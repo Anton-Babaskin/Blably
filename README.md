@@ -1,0 +1,2 @@
+# Settlingo
+language app
