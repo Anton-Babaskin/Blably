@@ -1,9 +1,10 @@
-/* Audio: recorded Turkish clips, packed into a few mp3 files.
+/* Screens: sound. Recorded Turkish clips, packed into a few mp3 files.
    AUDIO_INDEX (audio-index.js) maps pack -> [[key, byteLength], ...] in file order.
    A clip is a byte range of its pack; we cut it out and play it as a blob.
    Falls back to seeking inside the pack, then to the device's own voice. */
-'use strict';
-const Sound = (() => {
+import { uniq, speakKey } from '../core/text.js';
+
+export const Sound = (() => {
   const BYTES_PER_SEC = 3000;              // packs are 24 kbps CBR
   const where = new Map();                 // key -> {pack, off, len}
   const packs = new Map();                 // pack -> Promise<ArrayBuffer|null>
@@ -96,7 +97,7 @@ const Sound = (() => {
     } catch (e) { /* refused by the browser: the text stays on screen */ }
   }
 
-  ['course', 'words1'].forEach(p => { if (window.AUDIO_INDEX && AUDIO_INDEX[p]) loadPack(p); });
+  ['course', 'words1'].forEach(p => { if (window.AUDIO_INDEX && window.AUDIO_INDEX[p]) loadPack(p); });
 
   return { say, preload, onState: fn => listeners.push(fn), has: t => where.has(speakKey(t)) };
 })();

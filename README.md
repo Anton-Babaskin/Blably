@@ -81,7 +81,7 @@ python3 -m http.server 8000
 # http://localhost:8000
 ```
 
-Opening `index.html` directly from disk will not play audio: browsers block it on `file://`.
+Opening `index.html` directly from disk shows an empty page: browsers do not load JavaScript modules from `file://`.
 
 <details>
 <summary><b>Project structure</b></summary>
@@ -90,10 +90,11 @@ Opening `index.html` directly from disk will not play audio: browsers block it o
 |---|---|
 | `index.html` | Page shell and tab bar |
 | `app.css` | Design tokens, components, animations |
-| `app.js` | State, spaced repetition, lesson player, screens |
+| `core/` | Rules without the page: progress, spaced repetition, Turkish morphology, sessions, answer checking |
+| `ui/` | Screens, lesson player, sound, storage |
 | `data.js` | Course content and vocabulary |
-| `morph.js` | Turkish morphology and exercise generator |
-| `audio.js · audio/` | Audio packs and playback |
+| `audio/ · audio-index.js` | Audio packs and their index |
+| `tests/` | Tests: node --test |
 | `brand/ · fonts/` | Logo, icons, Nunito |
 | `docs/design-review/` | Design audit, before and after |
 | `tools/` | Scripts that build the audio and the logo |

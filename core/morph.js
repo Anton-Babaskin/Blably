@@ -1,5 +1,5 @@
-/* Turkish morphology: suffix builder + question generator */
-'use strict';
+/* Core: Turkish morphology, suffix builder and question generator. Pure functions, no page access. */
+import { lc, pick, shuffle, random } from './text.js';
 /* ================= morphology engine ================= */
 const V='aeıioöuü', FRONT='eiöü', HARD='fstkçşhp';
 const V4={a:'ı',ı:'ı',o:'u',u:'u',e:'i',i:'i',ö:'ü',ü:'ü'};
@@ -160,23 +160,25 @@ const TOPICS={
 const TASK={plural:'Сделай «много»',loc:'Где? Добавь -de / -da',dat:'Куда? Добавь -e / -a',abl:'Откуда? Добавь -den / -dan',acc:'«Тот самый»: добавь -i'};
 const TNAME={pres:'сейчас',presNeg:'«не» сейчас',past:'в прошлом',pastNeg:'«не» в прошлом',fut:'в будущем',aor:'обычно',aorNeg:'обычно «не»',abil:'могу',must:'должен'};
 
+/* A grammar question as data: prompt {kind, task, word, tr, lead?, q?}, the answer and its parts.
+   The screen draws the prompt; task and tr are course text in the base language. */
 function genQ(t){
   if(['plural','loc','dat','abl','acc','poss','poss1'].includes(t)){
     const pool=(t==='plural'||t.startsWith('poss'))?NOUNS.filter(n=>!n.p):NOUNS;
-    const n=pick(pool), p=t==='poss1'?0:Math.floor(Math.random()*5);
+    const n=pick(pool), p=t==='poss1'?0:Math.floor(random()*5);
     const r=nounForm(n,t==='poss1'?'poss':t,p); let prompt;
-    if(t.startsWith('poss')) prompt=`<div class="gq-task">${['мой','твой','его / её','наш','ваш'][p]}</div><div class="gq-sent">${PGEN[p]} <span class="blank"></span></div><div class="gq-tr">${esc(n.w)} — ${n.r}</div>`;
-    else prompt=`<div class="gq-task">${TASK[t]}</div><div class="gq-word">${esc(n.w)}</div><div class="gq-tr">${n.r}</div>`;
+    if(t.startsWith('poss')) prompt={kind:'sent',task:['мой','твой','его / её','наш','ваш'][p],lead:PGEN[p],word:n.w,tr:n.r};
+    else prompt={kind:'word',task:TASK[t],word:n.w,tr:n.r};
     return {t,prompt,...r,answer:r.parts.join('')};
   }
-  const v=pick(VERBS), p=Math.floor(Math.random()*6); let r, label;
+  const v=pick(VERBS), p=Math.floor(random()*6); let r, label;
   if(t==='q'){const tn=pick(['pres','past','fut']); r=quest(v,p,tn); label='вопрос, '+{pres:'сейчас',past:'в прошлом',fut:'в будущем'}[tn];}
   else{
-    let neg=false; if(t==='fut'&&Math.random()<.2)neg=true;
+    let neg=false; if(t==='fut'&&random()<.2)neg=true;
     r={pres:()=>pres(v,p,false),presNeg:()=>pres(v,p,true),past:()=>past(v,p,false),pastNeg:()=>past(v,p,true),fut:()=>fut(v,p,neg),aor:()=>aor(v,p,false),aorNeg:()=>aor(v,p,true),abil:()=>abil(v,p),must:()=>must(v,p)}[t]();
     label=neg?'«не» в будущем':TNAME[t];
   }
-  const prompt=`<div class="gq-task">${PRU[p]} · ${label}</div><div class="gq-sent">${P[p][0].toUpperCase()+P[p].slice(1)} <span class="blank"></span>${t==='q'?' ?':''}</div><div class="gq-tr">${esc(v.i)} — ${v.r}</div>`;
+  const prompt={kind:'sent',task:`${PRU[p]} · ${label}`,lead:P[p][0].toUpperCase()+P[p].slice(1),q:t==='q',word:v.i,tr:v.r};
   return {t,prompt,...r,answer:r.parts.join('')};
 }
 const SUB={a:['e'],e:['a'],ı:['i','u'],i:['ı','ü'],u:['ü','ı'],ü:['u','i'],o:['ö'],ö:['o'],d:['t'],t:['d'],ğ:['k','g'],k:['ğ'],b:['p'],p:['b'],c:['ç'],ç:['c'],g:['k'],y:['']};
@@ -188,3 +190,4 @@ function mkOptions(q){
   return shuffle([ans,...d.slice(0,3)]);
 }
 
+export {V,v2,v4,lastV,endV,endH,nounForm,pres,past,fut,aor,quest,abil,must,P,PRU,PGEN,NOUNS,VERBS,TOPICS,TASK,TNAME,genQ,mkOptions};

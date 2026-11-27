@@ -1,5 +1,5 @@
-/* Course content: lessons and vocabulary */
-'use strict';
+/* Course content (tr-ru): lessons and vocabulary. Moves into courses/tr-ru/ in the task «Курсы как пакеты». */
+import { VERBS } from './core/morph.js';
 /* ================= lesson builders ================= */
 const Lr=(t,b,ex)=>({k:'learn',t,b:b||'',ex:ex||[]});
 const Mc=(q,o,why,sy)=>({k:'mc',q,o,why,say:sy});
@@ -7,7 +7,7 @@ const Bd=(ru,a,x)=>({k:'build',ru,a,x:x||[]});
 const Mt=(...p)=>({k:'match',p});
 const Gn=(t,n)=>({k:'gen',topics:[].concat(t),n});
 
-const TALK=[
+export const TALK=[
 {u:'Первые фразы',d:'Поздороваться, познакомиться, поблагодарить',c:'#007AFF',ls:[
  {id:'t1',t:'Привет и как дела',steps:[
   Lr('Приветствия','Начнём с того, что ты слышишь каждый день. Нажимай на фразу, чтобы послушать.',[['Merhaba','Здравствуйте, привет'],['Selam','Привет (по-дружески)'],['Günaydın','Доброе утро'],['İyi akşamlar','Добрый вечер'],['Görüşürüz','Увидимся, пока']]),
@@ -202,7 +202,7 @@ const TALK=[
 ]}
 ];
 
-const GRAM=[
+export const GRAM=[
 {u:'Гармония гласных',d:'Главный секрет турецкого: почему ev-ler, но okul-lar',c:'#007AFF',ls:[
  {id:'g1',t:'Две коробки: e или a',steps:[
   Lr('Хвостики меняются','К турецкому слову цепляются хвостики. Например, <b>-ler</b> делает «много»:<div class="pair"><span>ev → ev<b>ler</b></span><span>дома</span></div><div class="pair"><span>okul → okul<b>lar</b></span><span>школы</span></div>Хвостик один и тот же, но в <b>okul</b> он стал <b>-lar</b>. Почему — сейчас разберём.'),
@@ -301,7 +301,7 @@ const GRAM=[
 ];
 
 /* ================= vocabulary ================= */
-const WG=[
+export const WG=[
 {g:'Основа',d:'Слова, которые ты слышишь каждый день. С них стоит начать, чтобы заговорить.',cats:[
 {id:'pron',n:'Я, ты, мы',s:'ben',c:'#007AFF',it:[['ben','я'],['sen','ты'],['o','он, она, оно'],['biz','мы'],['siz','вы'],['onlar','они'],['benim','мой'],['senin','твой'],['onun','его, её'],['bizim','наш'],['sizin','ваш'],['bana','мне'],['sana','тебе'],['ona','ему, ей'],['beni','меня'],['seni','тебя'],['onu','его, её (кого?)'],['bende','у меня'],['sende','у тебя'],['kendim','я сам']]},
 {id:'ask',n:'Вопросы',s:'nerede?',c:'#E67E00',it:[['ne?','что?'],['kim?','кто?'],['nerede?','где?'],['nereye?','куда?'],['nereden?','откуда?'],['ne zaman?','когда?'],['neden?','почему?'],['niye?','почему? (разг.)'],['nasıl?','как?'],['kaç?','сколько (штук)?'],['ne kadar?','сколько (денег, времени)?'],['hangi?','какой (из)?'],['kimin?','чей?'],['ne için?','зачем?'],['nereli?','откуда родом?']]},
@@ -329,3 +329,6 @@ const WG=[
 {id:'verbs',n:'Главные глаголы',s:'gitmek',c:'#E67E00',it:VERBS.map(v=>[v.i,v.r]).concat([['inmek','выходить (из транспорта)'],['bakmak','смотреть'],['izlemek','смотреть (фильм)'],['hatırlamak','помнить'],['kazanmak','зарабатывать, выигрывать'],['harcamak','тратить'],['denemek','пробовать'],['tanışmak','знакомиться'],['kapatmak','закрывать, выключать'],['bitirmek','заканчивать'],['getirmek','приносить'],['götürmek','относить, отвозить'],['koymak','класть'],['bırakmak','оставлять'],['çıkmak','выходить'],['girmek','входить'],['dönmek','возвращаться, поворачивать'],['kalmak','оставаться'],['olmak','быть, становиться'],['tamir etmek','чинить'],['iptal etmek','отменять']])}
 ]}
 ];
+
+/* Which word groups feed listening practice and the word of the day, and which grammar to drill before any grammar lesson */
+export const META={listen:['pron','ask','here','dir','when','yes','phr'],wordOfDay:['phr','links'],firstGrammar:['plural','poss1','loc','pres','past']};
