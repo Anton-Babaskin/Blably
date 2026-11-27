@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/T%C3%BCrk%C3%A7e%20%E2%87%84%20%D0%A0%D1%83%D1%81%D1%81%D0%BA%D0%B8%D0%B9-2F6BFF?style=for-the-badge" alt="Türkçe ⇄ Русский">
+  <img src="https://img.shields.io/badge/T%C3%BCrk%C3%A7e%20%E2%87%84%20%D0%A3%D0%BA%D1%80%D0%B0%D1%97%D0%BD%D1%81%D1%8C%D0%BA%D0%B0%20%C2%B7%20%D0%A0%D1%83%D1%81%D1%81%D0%BA%D0%B8%D0%B9-2F6BFF?style=for-the-badge" alt="Türkçe ⇄ Українська · Русский">
   <a href="docs/design-review/"><img src="https://img.shields.io/badge/Design%20review-before%20%C2%B7%20after-0E1B3D?style=for-the-badge" alt="Design review"></a>
   <br>
   <img src="https://img.shields.io/badge/HTML-CSS-2F6BFF?style=flat-square" alt="HTML CSS">
@@ -20,9 +20,9 @@
   <img src="https://img.shields.io/github/last-commit/Anton-Babaskin/Settlingo?style=flat-square&color=7F8BA8" alt="last commit">
 </p>
 
-**Blably** is a free app for learning languages both ways: **Turkish for Russian speakers** and **Russian for Turkish speakers**. It is built for people who live next to the language and want to start *speaking* it: words, confidence and a daily habit. Ten minutes a day, right in the browser, without sign-up.
+**Blably** is a free app for learning languages both ways: Turkish for Russian and Ukrainian speakers, Russian and Ukrainian for Turkish speakers, and later English ↔ Russian. It is built for people who live next to a language and want to start *speaking* it: words, confidence and a daily habit. Ten minutes a day, right in the browser, without sign-up.
 
-> Live now: Turkish for Russian speakers, interface in Russian. Russian for Turkish speakers, an English course and interfaces in Ukrainian, English and Turkish are on the roadmap.
+> Live now: Turkish for Russian speakers. The interface is getting Russian, Ukrainian and English versions; the other courses follow the roadmap.
 
 <p align="center"><img src="docs/assets/screens.png" alt="Blably screens" width="830"></p>
 
@@ -49,19 +49,24 @@ flowchart LR
 | Course | For speakers of | Status | Contents |
 |---|---|---|---|
 | **Turkish** | Russian | <img src="https://img.shields.io/badge/live-16A061?style=flat-square" alt="live"> | 34 lessons · 403 words · audio |
-| **Russian** | Turkish | <img src="https://img.shields.io/badge/planned-B7C1D6?style=flat-square" alt="planned"> | Cyrillic, everyday phrases, cases explained through Turkish |
-| **English** | Russian, Ukrainian | <img src="https://img.shields.io/badge/planned-B7C1D6?style=flat-square" alt="planned"> | A1–A2, work, moving and travel |
+| **Turkish** | Ukrainian | <img src="https://img.shields.io/badge/planned-5FA2FF?style=flat-square" alt="planned"> | same lessons, explained in Ukrainian |
+| **Russian** | Turkish | <img src="https://img.shields.io/badge/planned-5FA2FF?style=flat-square" alt="planned"> | Cyrillic, everyday phrases, cases explained through Turkish |
+| **Ukrainian** | Turkish | <img src="https://img.shields.io/badge/planned-5FA2FF?style=flat-square" alt="planned"> | Cyrillic, everyday phrases, grammar through Turkish |
+| **English** | Russian | <img src="https://img.shields.io/badge/later-B7C1D6?style=flat-square" alt="later"> | A1–A2, work, moving and travel |
+| **Russian** | English | <img src="https://img.shields.io/badge/later-B7C1D6?style=flat-square" alt="later"> | built on the course for Turkish speakers |
 
 ## Roadmap
 
 | Stage | What |
 |---|---|
-| 1. **Foundation** | offline mode, interface in 4 languages, tests, two-way course packs |
-| 2. **English course** | English for Russian and Ukrainian speakers |
-| 3. **Russian for Turks** | Cyrillic, phrases and grammar with a Turkish interface |
-| 4. **Better learning** | placement test, pronunciation check, dialogues |
-| 5. **Sync and sharing** | progress on all devices, share with friends |
-| 6. **Mobile apps** | App Store and Google Play |
+| 1. **Foundation** | interface in Russian, Ukrainian and English, two-way course packs, offline mode, tests |
+| 2. **Turkish for Ukrainians** | the Turkish course explained in Ukrainian |
+| 3. **Russian for Turks** | Cyrillic, phrases and grammar, Turkish interface |
+| 4. **Ukrainian for Turks** | the same for Ukrainian |
+| 5. **English ↔ Russian** | last of the courses |
+| 6. **Better learning** | placement test, pronunciation check, dialogues |
+| 7. **Sync and sharing** | progress on all devices, language tandem with friends |
+| 8. **Mobile apps** | App Store and Google Play |
 
 [Full plan with details →](ROADMAP.md)
 

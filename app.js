@@ -175,7 +175,7 @@ const ICON = {
   lock: svg('<rect x="5.5" y="10.5" width="13" height="9.5" rx="2.5"/><path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5"/>')
 };
 /* The brand mark, drawn inline so it scales cleanly */
-const MARK = `<svg class="mark" viewBox="0 0 512 512" aria-hidden="true"><defs><linearGradient id="mk-bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5FA2FF"/><stop offset=".55" stop-color="#3A72FA"/><stop offset="1" stop-color="#2652E8"/></linearGradient></defs><rect width="512" height="512" rx="116" fill="url(#mk-bg)"/><path d="M150 112H362A78 78 0 0 1 440 190V282A78 78 0 0 1 362 360H232L168 410C158 418 146 410 149 398L158 360H150A78 78 0 0 1 72 282V190A78 78 0 0 1 150 112Z" fill="#fff"/><path d="M318 176C286 160 214 158 200 196C186 236 312 226 312 270C312 312 236 316 194 298" fill="none" stroke="#2F6BFF" stroke-width="34" stroke-linecap="round"/></svg>`;
+const MARK = `<svg class="mark" viewBox="100 54 362 438" aria-hidden="true"><path d="M146 108A40 40 0 0 1 226 108V168A150 150 0 1 1 214 446L132 482C118 488 108 476 116 464L146 418ZM302 236A64 64 0 1 0 302.1 236Z" fill="#2F6BFF" fill-rule="evenodd"/></svg>`;
 
 /* ───────────────────────── Shared UI bits ───────────────────────── */
 const playBtn = (t, cls) => `<button class="say ${cls || ''}" data-say="${esc(t)}" aria-label="Послушать">${ICON.play}</button>`;
