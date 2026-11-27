@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Settlingo: аудит и новый дизайн</title>
+<link rel="icon" href="img/settlingo-icon.svg" type="image/svg+xml">
+<style>
+@font-face{font-family:"Nunito";font-weight:800;font-display:swap;src:url(fonts/nunito-cyrillic-800-normal.woff2) format("woff2");unicode-range:U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:"Nunito";font-weight:800;font-display:swap;src:url(fonts/nunito-latin-ext-800-normal.woff2) format("woff2");unicode-range:U+0100-02BA,U+1E00-1E9F}
+@font-face{font-family:"Nunito";font-weight:800;font-display:swap;src:url(fonts/nunito-latin-800-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+2000-206F}
+:root{
+  /* Same language as the app: light canvas, one blue, rounded display face. Layout: 880px editorial column, screenshots in phone frames. */
+  --canvas:#F5F8FF; --card:#FFFFFF; --ink:#0E1B3D; --ink2:#3E4A6B; --muted:#7F8BA8; --line:rgba(30,60,140,.09);
+  --blue:#2F6BFF; --blue-d:#2452E6; --blue-50:#EEF3FF; --blue-100:#DDE7FF; --good:#16A061; --good-50:#E7F7EE; --bad:#E5484D; --bad-50:#FDEEEE; --warn:#B26A00; --warn-50:#FFF4E2;
+  --f-d:"Nunito",ui-rounded,system-ui,sans-serif; --f-b:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --sh:0 1px 2px rgba(20,45,110,.05),0 14px 36px -16px rgba(20,45,110,.2);
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--canvas);color:var(--ink);font-family:var(--f-b);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.bg{position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(600px 400px at 10% -5%,#DCE8FF,transparent 70%),radial-gradient(500px 400px at 100% 30%,#E6EDFF,transparent 70%)}
+.wrap{max-width:880px;margin:0 auto;padding:0 20px 80px}
+header.top{display:flex;align-items:center;justify-content:space-between;padding:22px 0}
+header.top img{height:34px}
+header.top span{font-size:14px;color:var(--muted)}
+.hero{padding:40px 0 20px}
+.eyebrow{font-size:13px;font-weight:650;letter-spacing:.05em;text-transform:uppercase;color:var(--blue)}
+h1{font-family:var(--f-d);font-weight:800;font-size:44px;line-height:1.08;letter-spacing:-.025em;margin:8px 0 14px;text-wrap:balance}
+h2{font-family:var(--f-d);font-weight:800;font-size:30px;letter-spacing:-.02em;line-height:1.15;margin:0 0 8px;text-wrap:balance}
+h3{font-family:var(--f-d);font-weight:800;font-size:20px;letter-spacing:-.01em;margin:0 0 6px}
+p{max-width:66ch;margin:0 0 12px}
+.lead{font-size:19px;color:var(--ink2)}
+.muted{color:var(--muted)}
+section{margin-top:64px}
+.sec-head{margin-bottom:22px}
+.sec-head p{color:var(--ink2)}
+.num{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:10px;background:var(--blue-50);color:var(--blue);font-family:var(--f-d);font-weight:800;font-size:15px;margin-right:10px;vertical-align:3px}
+.card{background:var(--card);border-radius:22px;box-shadow:var(--sh)}
+.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:26px}
+.summary .card{padding:20px}
+.summary b{display:block;font-family:var(--f-d);font-size:30px;font-weight:800;color:var(--blue-d);line-height:1.1}
+.summary span{font-size:15px;color:var(--ink2)}
+/* issues */
+.issues{display:grid;gap:10px}
+.issue{display:grid;grid-template-columns:auto 1fr;gap:14px;padding:18px 20px;align-items:start}
+.pill{font-size:12px;font-weight:700;padding:4px 10px;border-radius:12px;white-space:nowrap;margin-top:2px}
+.pill.hi{background:var(--bad-50);color:var(--bad)} .pill.mid{background:var(--warn-50);color:var(--warn)} .pill.ok{background:var(--good-50);color:var(--good)}
+.issue h3{font-size:17px;margin-bottom:2px}
+.issue p{margin:0;font-size:15.5px;color:var(--ink2)}
+.issue .fix{margin-top:6px;font-size:15px;color:var(--blue-d)}
+/* competitors */
+.tbl-wrap{overflow-x:auto;border-radius:22px;box-shadow:var(--sh);background:var(--card)}
+table{border-collapse:collapse;width:100%;min-width:720px;font-size:15px}
+th,td{padding:14px 16px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+th{font-size:12.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:650;background:#FAFCFF}
+tr:last-child td{border-bottom:0}
+td:first-child{font-weight:700;white-space:nowrap}
+td .t{color:var(--good);font-weight:600}
+td .n{color:var(--bad);font-weight:600}
+/* before / after */
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start;margin:0 auto 38px;max-width:660px}
+.pair figure{margin:0}
+.phone{border-radius:34px;overflow:hidden;background:#fff;box-shadow:0 0 0 7px #fff,0 0 0 8px rgba(30,60,140,.1),0 24px 50px -24px rgba(20,45,110,.4);aspect-ratio:585/1266}
+.phone img{display:block;width:100%;height:auto}
+figcaption{margin-top:16px;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);text-align:center}
+.pair .after figcaption{color:var(--blue)}
+.pair-head{display:flex;align-items:baseline;gap:12px;margin:0 auto 14px;max-width:660px}
+.pair-head h3{margin:0}
+.pair-note{grid-column:1/-1;margin:0;font-size:15.5px;color:var(--ink2);max-width:none}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+/* brand */
+.brand-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:14px}
+.brand-big{padding:36px;display:grid;place-items:center;background:linear-gradient(160deg,#fff,#F0F5FF)}
+.brand-big img{width:180px;filter:drop-shadow(0 18px 30px rgba(47,107,255,.35))}
+.brand-side{display:grid;gap:14px}
+.brand-side .card{padding:22px;display:flex;align-items:center;justify-content:center;min-height:110px}
+.brand-side .dark{background:#0E1B3D}
+.sizes{display:flex;align-items:flex-end;gap:18px}
+.swatches{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:14px}
+.sw{border-radius:16px;overflow:hidden;background:var(--card);box-shadow:var(--sh)}
+.sw i{display:block;height:64px}
+.sw div{padding:8px 10px;font-size:12.5px;color:var(--ink2)}
+.sw b{display:block;font-size:13px;color:var(--ink)}
+.type{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+.type .card{padding:22px}
+.type .d{font-family:var(--f-d);font-weight:800;font-size:34px;letter-spacing:-.02em;line-height:1.1}
+.type .b{font-size:22px}
+/* principles */
+.principles{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.principles .card{padding:22px}
+.principles p{margin:0;font-size:15.5px;color:var(--ink2)}
+.roadmap{display:grid;gap:10px}
+.step{display:grid;grid-template-columns:110px 1fr;gap:16px;padding:18px 20px}
+.step .when{font-family:var(--f-d);font-weight:800;color:var(--blue)}
+.step p{margin:0;font-size:15.5px;color:var(--ink2)}
+.sources{font-size:14.5px;color:var(--ink2)}
+.sources a{color:var(--blue-d)}
+.sources li{margin:4px 0}
+a{color:var(--blue-d)}
+@media (max-width:720px){h1{font-size:34px}h2{font-size:25px}.summary,.principles,.brand-grid,.type{grid-template-columns:1fr}.gallery{grid-template-columns:1fr 1fr}.swatches{grid-template-columns:repeat(3,1fr)}.step{grid-template-columns:1fr;gap:4px}.pair{gap:12px}.phone{border-radius:24px}}
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="wrap">
+<header class="top"><img src="img/settlingo-lockup.svg" alt="Settlingo"><span>Дизайн-ревью · ноябрь 2026</span></header>
+
+<div class="hero">
+  <div class="eyebrow">Аудит и редизайн</div>
+  <h1>Settlingo: от строгого чёрно-белого к светлому и дружелюбному</h1>
+  <p class="lead">Мы разобрали текущую версию приложения, посмотрели, как устроены Duolingo, Babbel, Busuu и Drops, и собрали новый дизайн: светлый, с одним синим цветом, иконками, логотипом и живыми, но спокойными эффектами. Логику обучения (уроки, повторение по интервалам, аудирование) не трогали.</p>
+  <div class="summary">
+    <div class="card"><b>7</b><span>проблем дизайна найдено, 4 из них серьёзные</span></div>
+    <div class="card"><b>5</b><span>приложений и гайдов разобрано: Duolingo, Babbel, Busuu, Drops, Apple / Google</span></div>
+    <div class="card"><b>15+</b><span>экранов переделано, плюс логотип и мини-дизайн-система</span></div>
+  </div>
+</div>
+
+<section>
+  <div class="sec-head"><h2><span class="num">1</span>Что было не так</h2><p>Прошлая версия была аккуратной, но слишком строгой: она выглядела как рабочий инструмент, а не как приложение, к которому хочется вернуться вечером.</p></div>
+  <div class="issues">
+    <div class="card issue"><span class="pill hi">Важно</span><div><h3>Тяжёлый чёрный цвет</h3><p>Чёрный блок плана, чёрные кнопки и чёрные кружки «играть». Контраст максимальный, и экран давит, особенно вечером.</p><p class="fix">Стало: белые карточки на светло-голубом фоне, один синий для всего, что нажимается.</p></div></div>
+    <div class="card issue"><span class="pill hi">Важно</span><div><h3>Нет бренда</h3><p>Ни логотипа, ни имени. Вкладка называлась «Türkçe», и приложение ничем не отличалось от десятка похожих.</p><p class="fix">Стало: имя Settlingo, значок-облачко со «S»-дорожкой, иконка для экрана телефона.</p></div></div>
+    <div class="card issue"><span class="pill hi">Важно</span><div><h3>Курс — плоский список</h3><p>Нет ощущения пути. Текущий урок теряется среди остальных, прогресс почти не виден.</p><p class="fix">Стало: дорожка из кружков, как в Duolingo, с подсказкой «Начать» над следующим уроком.</p></div></div>
+    <div class="card issue"><span class="pill hi">Важно</span><div><h3>Таб-бар без иконок</h3><p>Только слова внизу экрана. На iOS и Android люди ищут раздел по значку, а не читают подписи.</p><p class="fix">Стало: «стеклянная» панель с иконками и подписями, активный раздел подсвечен.</p></div></div>
+    <div class="card issue"><span class="pill mid">Средне</span><div><h3>Ответы не выглядят нажимаемыми</h3><p>Плоские прямоугольники без глубины. Не хватало ощущения «кнопки», которую приятно нажать.</p><p class="fix">Стало: варианты с мягкой нижней тенью, которые проседают при нажатии, анимация верного и неверного ответа.</p></div></div>
+    <div class="card issue"><span class="pill mid">Средне</span><div><h3>Мало мотивации</h3><p>Цифры дня были, но без визуальной цели. Не было серии правильных ответов и праздника в конце урока.</p><p class="fix">Стало: кольцо дневной цели, счётчик «подряд» в уроке, финальный экран со вспышкой.</p></div></div>
+    <div class="card issue"><span class="pill mid">Средне</span><div><h3>Системный шрифт в заголовках</h3><p>Читается хорошо, но характера нет.</p><p class="fix">Стало: округлый Nunito для заголовков и турецких слов, системный шрифт для текста.</p></div></div>
+    <div class="card issue"><span class="pill ok">Оставили</span><div><h3>Что было хорошо</h3><p>Одна колонка, понятная иерархия текста, нижняя панель с ответом, план дня из трёх шагов, повторение по интервалам. Всё это сохранили.</p></div></div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><h2><span class="num">2</span>Как это делают другие</h2><p>Берём лучшие паттерны, но не копируем чужой стиль: у Settlingo свой цвет, свой знак и своя интонация.</p></div>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Приложение</th><th>Сильная сторона дизайна</th><th>Что берём</th><th>Что не берём</th></tr></thead>
+    <tbody>
+      <tr><td>Duolingo</td><td>Учебный путь из узлов вместо списка, чтобы было понятно, что делать дальше. Узнаваемость за счёт насыщенного цвета, «объёмных» кнопок и скруглённых форм.</td><td><span class="t">Дорожку уроков, объёмные кнопки и варианты, нижнюю панель с ответом, праздник в конце</span></td><td><span class="n">Кислотный зелёный, маскота, штрафы и «жизни», мультяшность</span></td></tr>
+      <tr><td>Babbel</td><td>Взрослая сдержанность и минимализм. Главная вкладка «Учить» сразу показывает следующие уроки.</td><td><span class="t">Спокойный тон, ясный следующий шаг на главном экране</span></td><td><span class="n">Перегруженные меню курсов</span></td></tr>
+      <tr><td>Busuu</td><td>Структурированный дашборд и план обучения, упор на говорение.</td><td><span class="t">План на день, отдельная тренировка «Скажи вслух»</span></td><td><span class="n">Платные стены посреди урока</span></td></tr>
+      <tr><td>Drops / Memrise</td><td>Визуальное обучение словам короткими раундами.</td><td><span class="t">Крупные слова, быстрые раунды, «слово дня»</span></td><td><span class="n">Таймеры и давление скоростью</span></td></tr>
+      <tr><td>Apple / Google</td><td>Системные паттерны: нижняя панель с иконками, скругления, мягкие тени, «стекло».</td><td><span class="t">Стеклянный таб-бар, системный шрифт текста, сегментированный переключатель</span></td><td><span class="n">Мелкий серый текст и бледные контролы</span></td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <div class="sec-head"><h2><span class="num">3</span>Было и стало</h2><p>Реальные экраны приложения, слева прошлая версия, справа новая. Ширина экрана 390 точек, как у iPhone 15.</p></div>
+
+  <div class="pair-head"><h3>Главный экран</h3></div>
+  <div class="pair"><figure><div class="phone"><img src="img/today-before.jpg" alt="Главный экран, прошлая версия" loading="lazy"></div><figcaption>Было</figcaption></figure><figure class="after"><div class="phone"><img src="img/today-after.jpg" alt="Главный экран, новая версия" loading="lazy"></div><figcaption>Стало</figcaption></figure>
+  <p class="pair-note">Чёрный блок стал светлой карточкой с кольцом дневной цели. У каждого шага плана появилась иконка, сверху логотип и счётчик дней подряд.</p></div>
+
+  <div class="pair-head"><h3>Курс</h3></div>
+  <div class="pair"><figure><div class="phone"><img src="img/course-before.jpg" alt="Курс, прошлая версия" loading="lazy"></div><figcaption>Было</figcaption></figure><figure class="after"><div class="phone"><img src="img/course-after.jpg" alt="Курс, новая версия" loading="lazy"></div><figcaption>Стало</figcaption></figure>
+  <p class="pair-note">Список стал дорожкой: пройденные уроки синие с галочкой, следующий пульсирует и подписан «Начать». Разделы стали синими карточками с градиентом.</p></div>
+
+  <div class="pair-head"><h3>Карточка нового материала</h3></div>
+  <div class="pair"><figure><div class="phone"><img src="img/learn-before.jpg" alt="Новый материал, прошлая версия" loading="lazy"></div><figcaption>Было</figcaption></figure><figure class="after"><div class="phone"><img src="img/learn-after.jpg" alt="Новый материал, новая версия" loading="lazy"></div><figcaption>Стало</figcaption></figure>
+  <p class="pair-note">Чёрные кружки заменили мягкими голубыми кнопками «играть». Турецкие слова набраны округлым шрифтом, чтобы глаз сразу отделял их от русского.</p></div>
+
+  <div class="pair-head"><h3>Вопрос и ответ</h3></div>
+  <div class="pair"><figure><div class="phone"><img src="img/question-before.jpg" alt="Вопрос, прошлая версия" loading="lazy"></div><figcaption>Было</figcaption></figure><figure class="after"><div class="phone"><img src="img/question-after.jpg" alt="Вопрос, новая версия" loading="lazy"></div><figcaption>Стало</figcaption></figure>
+  <p class="pair-note">Варианты стали «объёмными» и проседают при нажатии. Неактивная кнопка «Проверить» теперь светло-синяя и не теряется на фоне.</p></div>
+
+  <div class="pair-head"><h3>Аудирование</h3></div>
+  <div class="pair"><figure><div class="phone"><img src="img/listen-before.jpg" alt="Аудирование, прошлая версия" loading="lazy"></div><figcaption>Было</figcaption></figure><figure class="after"><div class="phone"><img src="img/listen-after.jpg" alt="Аудирование, новая версия" loading="lazy"></div><figcaption>Стало</figcaption></figure>
+  <p class="pair-note">Вместо чёрного «плей» стоит большая синяя кнопка с динамиком. Пока звучит фраза, от неё расходятся кольца, так что видно, что звук идёт.</p></div>
+
+  <div class="pair-head"><h3>Обратная связь</h3></div>
+  <div class="pair"><figure><div class="phone"><img src="img/feedback-before.jpg" alt="Ответ, прошлая версия" loading="lazy"></div><figcaption>Было</figcaption></figure><figure class="after"><div class="phone"><img src="img/feedback-after.jpg" alt="Ответ, новая версия" loading="lazy"></div><figcaption>Стало</figcaption></figure>
+  <p class="pair-note">Панель с ответом стала мягче: нежный зелёный или розовый фон, кнопка «Продолжить» в цвет результата, при серии из трёх верных ответов появляется счётчик.</p></div>
+
+  <div class="pair-head"><h3>Конец урока</h3></div>
+  <div class="pair"><figure><div class="phone"><img src="img/finish-before.jpg" alt="Конец урока, прошлая версия" loading="lazy"></div><figcaption>Было</figcaption></figure><figure class="after"><div class="phone"><img src="img/finish-after.jpg" alt="Конец урока, новая версия" loading="lazy"></div><figcaption>Стало</figcaption></figure>
+  <p class="pair-note">Серый кружок стал синим значком, который «выпрыгивает» с маленькой вспышкой. Итоги урока разложены по карточкам с иконками.</p></div>
+
+  <div class="pair-head"><h3>Слова</h3></div>
+  <div class="pair"><figure><div class="phone"><img src="img/words-before.jpg" alt="Слова, прошлая версия" loading="lazy"></div><figcaption>Было</figcaption></figure><figure class="after"><div class="phone"><img src="img/words-after.jpg" alt="Слова, новая версия" loading="lazy"></div><figcaption>Стало</figcaption></figure>
+  <p class="pair-note">Плитки тем приподнимаются при наведении, слово-пример набрано синим, прогресс показан синей полоской.</p></div>
+
+  <h3 style="margin-top:20px">Остальные экраны</h3>
+  <div class="gallery" style="margin-top:14px">
+    <figure style="margin:0"><div class="phone"><img src="img/06-match.jpg" alt="Найди пары" loading="lazy"></div><figcaption>Найди пары</figcaption></figure>
+    <figure style="margin:0"><div class="phone"><img src="img/07-build.jpg" alt="Собери фразу" loading="lazy"></div><figcaption>Собери фразу</figcaption></figure>
+    <figure style="margin:0"><div class="phone"><img src="img/09b-speak-answer.jpg" alt="Скажи вслух" loading="lazy"></div><figcaption>Скажи вслух</figcaption></figure>
+    <figure style="margin:0"><div class="phone"><img src="img/13-practice.jpg" alt="Тренировка" loading="lazy"></div><figcaption>Тренировка</figcaption></figure>
+    <figure style="margin:0"><div class="phone"><img src="img/15-grammar-fb.jpg" alt="Грамматика" loading="lazy"></div><figcaption>Грамматика</figcaption></figure>
+    <figure style="margin:0"><div class="phone"><img src="img/17-category.jpg" alt="Тема слов" loading="lazy"></div><figcaption>Тема слов</figcaption></figure>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><h2><span class="num">4</span>Логотип</h2><p>Облачко речи, внутри «S», нарисованная как извилистая дорожка. Это одновременно первая буква Settlingo, разговор и путь обучения. Знак держится от 16 пикселей (иконка вкладки браузера) до иконки на экране телефона.</p></div>
+  <div class="brand-grid">
+    <div class="card brand-big"><img src="img/settlingo-icon.svg" alt="Иконка Settlingo"></div>
+    <div class="brand-side">
+      <div class="card"><img src="img/settlingo-lockup.svg" alt="Логотип Settlingo со шрифтовой частью" style="height:56px"></div>
+      <div class="card"><div class="sizes"><img src="img/settlingo-icon.svg" alt="" width="64"><img src="img/settlingo-icon.svg" alt="" width="40"><img src="img/settlingo-icon.svg" alt="" width="24"><img src="img/settlingo-icon.svg" alt="" width="16"></div></div>
+      <div class="card dark"><img src="img/settlingo-icon.svg" alt="Иконка на тёмном фоне" width="72"></div>
+    </div>
+  </div>
+  <p class="muted" style="margin-top:14px;font-size:15px">Первый вариант со знаком «ş» отбросили: в облачке он читался как знак доллара.</p>
+</section>
+
+<section>
+  <div class="sec-head"><h2><span class="num">5</span>Дизайн-система</h2><p>Один синий цвет для всего, что нажимается. Зелёный и красный появляются только в ответах. Никаких эмодзи и радуги.</p></div>
+  <div class="swatches">
+    <div class="sw"><i style="background:#2F6BFF"></i><div><b>Синий</b>#2F6BFF</div></div>
+    <div class="sw"><i style="background:linear-gradient(135deg,#5FA2FF,#2652E8)"></i><div><b>Градиент</b>знак, разделы</div></div>
+    <div class="sw"><i style="background:#EEF3FF"></i><div><b>Синий 50</b>фон иконок</div></div>
+    <div class="sw"><i style="background:#F5F8FF;box-shadow:inset 0 0 0 1px rgba(30,60,140,.08)"></i><div><b>Холст</b>#F5F8FF</div></div>
+    <div class="sw"><i style="background:#0E1B3D"></i><div><b>Чернила</b>#0E1B3D</div></div>
+    <div class="sw"><i style="background:linear-gradient(90deg,#16A061 50%,#E5484D 50%)"></i><div><b>Ответы</b>верно / нет</div></div>
+  </div>
+  <div class="type">
+    <div class="card"><div class="d">Günaydın</div><p class="muted" style="margin:8px 0 0;font-size:15px">Nunito 800 — заголовки и турецкие слова. Округлый, как знак.</p></div>
+    <div class="card"><div class="b">Доброе утро. Десять минут в день.</div><p class="muted" style="margin:8px 0 0;font-size:15px">Системный шрифт — весь остальной текст. SF Pro на iPhone, Roboto на Android.</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><h2><span class="num">6</span>Видение</h2><p>Settlingo — тихий помощник для тех, кто уже живёт в Стамбуле: турецкий вокруг слышен каждый день, не хватает смелости и словаря, чтобы говорить. Поэтому дизайн мотивирует ясностью, а не давлением.</p></div>
+  <div class="principles">
+    <div class="card"><h3>Спокойно, а не громко</h3><p>Светлый фон, один цвет, мягкие тени. Приложение, которое приятно открыть вечером после работы.</p></div>
+    <div class="card"><h3>Один следующий шаг</h3><p>На главном экране всегда понятно, что делать сейчас: план из трёх шагов и одна большая кнопка.</p></div>
+    <div class="card"><h3>Говорить, а не узнавать</h3><p>Упражнения «Скажи вслух» и диктант важнее выбора из вариантов. Дизайн выносит их на первый план.</p></div>
+    <div class="card"><h3>Радость без игрушечности</h3><p>Живые микроанимации, серия ответов, вспышка в конце урока. Без маскота, штрафов и «потерянных жизней».</p></div>
+  </div>
+
+  <h3 style="margin-top:34px">Что дальше</h3>
+  <div class="roadmap" style="margin-top:12px">
+    <div class="card step"><span class="when">Сразу</span><p>Опубликовать на GitHub Pages из репозитория Settlingo, чтобы приложение открывалось по обычной ссылке у друзей и коллег.</p></div>
+    <div class="card step"><span class="when">Скоро</span><p>Сделать «установку на телефон» (PWA): значок на экране, работа без интернета, звук в кэше.</p></div>
+    <div class="card step"><span class="when">Скоро</span><p>Короткое знакомство при первом запуске: уровень, цель в минутах в день, напоминание.</p></div>
+    <div class="card step"><span class="when">Потом</span><p>Тёмная тема в той же палитре, синхронизация прогресса между телефоном и ноутбуком, проверка произношения микрофоном в «Скажи вслух».</p></div>
+  </div>
+</section>
+
+<section class="sources">
+  <h3>Источники</h3>
+  <ul>
+    <li><a href="https://www.mindtheproduct.com/lessons-from-duolingos-product-handbook/">Mind the Product: уроки из продуктового справочника Duolingo</a> — учебный путь вместо списка</li>
+    <li><a href="https://uk.finance.yahoo.com/news/duolingo-language-learning-app-undergoes-135344395.html">Duolingo: крупнейший редизайн, чтобы приложение меньше напрягало</a></li>
+    <li><a href="https://open-design.ai/plugins/design-system-duolingo/">Разбор дизайн-системы Duolingo</a> — насыщенный цвет, объёмные кнопки, скругления</li>
+    <li><a href="https://xd.adobe.com/ideas/principles/app-design/simple-intuitive-gamified-babbel-language-learning-great-ux-design">Adobe XD Ideas: минимализм в UX Babbel</a></li>
+    <li><a href="https://support.babbel.com/hc/en-gb/articles/25075048448274--New-app-interface">Babbel: новый интерфейс, вкладка «Учить»</a></li>
+    <li><a href="https://www.studyfrenchspanish.com/busuu-review">Обзор Busuu</a> — структурированный дашборд и план обучения</li>
+    <li><a href="https://www.fluentu.com/blog/learn-language-apps-2/">FluentU: обзор языковых приложений</a> — Drops для визуального обучения</li>
+  </ul>
+</section>
+</div>
+</body>
+</html>
