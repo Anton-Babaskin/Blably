@@ -3,11 +3,12 @@
 Usage:
   pip install piper-tts
   # download the voice (two files: .onnx and .onnx.json) into tools/voices/
-  node tools/list-phrases.js
+  node tools/list-phrases.js [lang]          # default: tr
   python3 tools/build-audio.py [path/to/voice.onnx]
 
-Writes audio/<pack>.mp3 (24 kbps CBR mono, clips back to back) and audio-index.js,
-which maps pack -> [[phrase, byteLength], ...] in file order. audio.js cuts a clip by byte range.
+keys.json says which language it is ({lang, packs}). Writes audio/<lang>/<pack>.mp3
+(24 kbps CBR mono, clips back to back) and audio/<lang>/index.json, which maps
+pack -> [[phrase, byteLength], ...] in file order. ui/audio.js cuts a clip by byte range.
 Needs ffmpeg with libmp3lame.
 """
 import json, os, subprocess, sys, tempfile, wave
@@ -19,7 +20,9 @@ TOOLS = Path(__file__).resolve().parent
 ROOT = TOOLS.parent
 model = Path(sys.argv[1]) if len(sys.argv) > 1 else TOOLS / 'voices' / 'tr_TR-dfki-medium.onnx'
 voice = PiperVoice.load(str(model), config_path=str(model) + '.json')
-keys = json.loads((TOOLS / 'keys.json').read_text(encoding='utf8'))
+spec = json.loads((TOOLS / 'keys.json').read_text(encoding='utf8'))
+lang, keys = spec['lang'], spec['packs']
+OUT = ROOT / 'audio' / lang
 tmp = Path(tempfile.mkdtemp(prefix='settlingo-audio-'))
 
 jobs = []
@@ -41,15 +44,15 @@ def encode(job):
 with ThreadPoolExecutor(os.cpu_count() or 2) as ex:
     list(ex.map(encode, jobs))
 
-(ROOT / 'audio').mkdir(exist_ok=True)
+OUT.mkdir(parents=True, exist_ok=True)
 index = {}
 for pack, items in keys.items():
     entries = []
-    with open(ROOT / 'audio' / f'{pack}.mp3', 'wb') as out:
+    with open(OUT / f'{pack}.mp3', 'wb') as out:
         for i, (key, _text) in enumerate(items):
             data = (tmp / f'{pack}_{i}.mp3').read_bytes()
             out.write(data)
             entries.append([key, len(data)])
     index[pack] = entries
-(ROOT / 'audio-index.js').write_text('window.AUDIO_INDEX=' + json.dumps(index, ensure_ascii=False, separators=(',', ':')) + ';\n', encoding='utf8')
+(OUT / 'index.json').write_text(json.dumps(index, ensure_ascii=False, separators=(',', ':')) + '\n', encoding='utf8')
 print('done:', sum(len(v) for v in index.values()), 'clips in', len(index), 'packs')

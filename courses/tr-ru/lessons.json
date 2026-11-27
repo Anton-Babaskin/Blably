@@ -1,0 +1,496 @@
+{
+  "talk": [
+    {
+      "u": "Первые фразы",
+      "d": "Поздороваться, познакомиться, поблагодарить",
+      "c": "#007AFF",
+      "ls": [
+        {
+          "id": "t1",
+          "t": "Привет и как дела",
+          "steps": [
+            {"k":"learn","t":"Приветствия","b":"Начнём с того, что ты слышишь каждый день. Нажимай на фразу, чтобы послушать.","ex":[["Merhaba","Здравствуйте, привет"],["Selam","Привет (по-дружески)"],["Günaydın","Доброе утро"],["İyi akşamlar","Добрый вечер"],["Görüşürüz","Увидимся, пока"]]},
+            {"k":"mc","q":"Как сказать «Доброе утро»?","o":["Günaydın","İyi akşamlar","Görüşürüz","Selam"]},
+            {"k":"mc","q":"Что значит <b>Görüşürüz</b>?","o":["Увидимся","Привет","Добрый вечер","Как дела?"],"why":null,"say":"Görüşürüz"},
+            {"k":"learn","t":"Как дела?","b":"Есть форма на «ты» и вежливая на «вы». Вежливая длиннее на <b>-ız</b>.","ex":[["Nasılsın?","Как ты?"],["Nasılsınız?","Как вы? (вежливо)"],["İyiyim, sen?","Хорошо, а ты?"],["Fena değil.","Неплохо."],["Ne var ne yok?","Что нового?"],["İyilik, sende?","Всё хорошо, а у тебя?"]]},
+            {"k":"match","p":[["Merhaba","Здравствуйте"],["Nasılsın?","Как ты?"],["İyiyim","Я в порядке"],["Fena değil","Неплохо"],["Görüşürüz","Увидимся"]]},
+            {"k":"mc","q":"Соседка спрашивает: <b>Nasılsınız?</b> Что ответить?","o":["İyiyim, teşekkürler. Siz?","Görüşürüz.","Günaydın, sen?","Ne var ne yok?"],"why":"İyiyim, teşekkürler — «хорошо, спасибо». Siz? — «а вы?»: она обратилась на «вы», и ты отвечаешь так же."},
+            {"k":"build","ru":"Хорошо, а ты?","a":"İyiyim, sen?","x":["siz?","Nasılsın"]},
+            {"k":"build","ru":"Что нового?","a":"Ne var ne yok?","x":["nasıl","iyi"]},
+            {"k":"mc","q":"Как вежливо спросить «Как вы?»","o":["Nasılsınız?","Nasılsın?","Ne var ne yok?","Selam"],"why":"Окончание <b>-ınız</b> — вежливое «вы»."}
+          ]
+        },
+        {
+          "id": "t2",
+          "t": "Знакомство",
+          "steps": [
+            {"k":"learn","t":"Как тебя зовут?","b":"","ex":[["Adın ne?","Как тебя зовут?"],["Benim adım Ali.","Меня зовут Али."],["Memnun oldum.","Приятно познакомиться."],["Ben de.","Я тоже."]]},
+            {"k":"mc","q":"Что значит <b>Memnun oldum</b>?","o":["Приятно познакомиться","Меня зовут","Я тоже","Как дела?"],"why":null,"say":"Memnun oldum"},
+            {"k":"build","ru":"Меня зовут Али.","a":"Benim adım Ali.","x":["Senin","ne?"]},
+            {"k":"learn","t":"Откуда ты?","b":"Хвостик <b>-lı / -li / -lu / -lü</b> значит «родом оттуда»: İstanbul → İstanbul<b>lu</b>, Rusya → Rusya<b>lı</b>. Чтобы сказать «я», добавь <b>-yım / -yim</b>: Rusyalı<b>yım</b> — я из России.","ex":[["Nerelisin?","Откуда ты родом?"],["İstanbulluyum.","Я из Стамбула."],["Rusyalıyım.","Я из России."],["Ukraynalıyım.","Я из Украины."]]},
+            {"k":"mc","q":"Как спросить «Откуда ты?»","o":["Nerelisin?","Adın ne?","Nasılsın?","Nereye?"]},
+            {"k":"learn","t":"Работа и жизнь здесь","b":"","ex":[["Ne iş yapıyorsun?","Кем ты работаешь?"],["Mühendisim.","Я инженер."],["Ne zamandır buradasın?","Давно ты здесь?"],["Dört yıldır İstanbul'dayım.","Я четыре года в Стамбуле."]]},
+            {"k":"match","p":[["Adın ne?","Как тебя зовут?"],["Memnun oldum","Приятно познакомиться"],["Nerelisin?","Откуда ты?"],["Ne iş yapıyorsun?","Кем работаешь?"],["Ben de","Я тоже"]]},
+            {"k":"build","ru":"Я четыре года в Стамбуле.","a":"Dört yıldır İstanbul'dayım.","x":["İstanbul'a","yıl"]},
+            {"k":"build","ru":"Кем ты работаешь?","a":"Ne iş yapıyorsun?","x":["nerede","adın"]}
+          ]
+        },
+        {
+          "id": "t3",
+          "t": "Спасибо и извини",
+          "steps": [
+            {"k":"learn","t":"Спасибо","b":"","ex":[["Teşekkürler.","Спасибо."],["Teşekkür ederim.","Благодарю (вежливее)."],["Sağ ol.","Спасибо (по-дружески)."],["Rica ederim.","Пожалуйста (в ответ на спасибо)."],["Lütfen.","Пожалуйста (когда просишь)."]]},
+            {"k":"mc","q":"Тебе сказали <b>Teşekkürler</b>. Что ответить?","o":["Rica ederim.","Lütfen.","Sağ ol.","Pardon."],"why":"<b>Lütfen</b> — это «пожалуйста», когда просишь. В ответ на спасибо говорят <b>Rica ederim</b>."},
+            {"k":"learn","t":"Извини","b":"","ex":[["Pardon.","Простите (пройти, переспросить)."],["Affedersiniz.","Извините (привлечь внимание)."],["Kusura bakma.","Извини (за ошибку)."],["Önemli değil.","Ничего страшного."],["Buyurun.","Прошу, слушаю вас."]]},
+            {"k":"match","p":[["Lütfen","Пожалуйста (просьба)"],["Rica ederim","Не за что"],["Kusura bakma","Извини"],["Önemli değil","Ничего страшного"],["Buyurun","Слушаю вас"]]},
+            {"k":"mc","q":"Ты случайно толкнул человека. Что сказать?","o":["Pardon.","Buyurun.","Rica ederim.","Görüşürüz."]},
+            {"k":"mc","q":"Продавец говорит <b>Buyurun</b>. Что он имеет в виду?","o":["Слушаю вас, чем помочь?","Спасибо","До свидания","Извините"],"why":null,"say":"Buyurun"},
+            {"k":"build","ru":"Извини, ничего страшного.","a":"Kusura bakma, önemli değil.","x":["lütfen","rica"]}
+          ]
+        }
+      ]
+    },
+    {
+      "u": "Я, ты и «быть»",
+      "d": "Местоимения и как сказать «я устал», «я дома»",
+      "c": "#1FA347",
+      "ls": [
+        {
+          "id": "t4",
+          "t": "Я, ты, он",
+          "steps": [
+            {"k":"learn","t":"Местоимения","b":"<b>o</b> — это и «он», и «она», и «оно». Рода в турецком нет вообще. <b>siz</b> — это «вы» и вежливое «Вы».","ex":[["ben","я"],["sen","ты"],["o","он, она, оно"],["biz","мы"],["siz","вы"],["onlar","они"]]},
+            {"k":"match","p":[["ben","я"],["sen","ты"],["o","он, она"],["biz","мы"],["onlar","они"]]},
+            {"k":"mc","q":"Как будет «она»?","o":["o","onlar","sen","siz"],"why":"Рода нет: <b>o</b> — он, она, оно."},
+            {"k":"learn","t":"Мой, мне, меня","b":"Эти формы ты слышишь постоянно:","ex":[["benim","мой"],["senin","твой"],["bana","мне"],["sana","тебе"],["beni","меня"],["seni","тебя"]]},
+            {"k":"match","p":[["bana","мне"],["sana","тебе"],["beni","меня"],["benim","мой"],["senin","твой"]]},
+            {"k":"mc","q":"<b>Bana bak!</b> — что это?","o":["Посмотри на меня!","Посмотри на него!","Я смотрю.","Мой взгляд."],"why":null,"say":"Bana bak"},
+            {"k":"build","ru":"Дай мне.","a":"Bana ver.","x":["Sana","Beni"]}
+          ]
+        },
+        {
+          "id": "t5",
+          "t": "Я есть: -ım, -sın",
+          "steps": [
+            {"k":"learn","t":"Слова «есть» нет","b":"Турецкий не говорит «я есть усталый». Он приклеивает хвостик прямо к слову:","ex":[["Yorgunum.","Я устал."],["Hazırım.","Я готов."],["Evdeyim.","Я дома."],["Ofisteyim.","Я в офисе."]]},
+            {"k":"learn","t":"Хвостики «быть»","b":"Гласная в хвостике подстраивается под слово (подробно — в треке «Грамматика»). После гласной вставляется <b>y</b>: iyi → iyi<b>y</b>im.<div class=\"tbl\"><div>ben hazır<b>ım</b> — я готов</div><div>sen hazır<b>sın</b> — ты готов</div><div>o hazır — он готов</div><div>biz hazır<b>ız</b> — мы готовы</div><div>siz hazır<b>sınız</b> — вы готовы</div><div>onlar hazır<b>lar</b> — они готовы</div></div>","ex":[]},
+            {"k":"mc","q":"Как сказать «Я устал»?","o":["Yorgunum.","Yorgunsun.","Yorgun.","Yorgunuz."]},
+            {"k":"mc","q":"Как сказать «Мы дома»?","o":["Evdeyiz.","Evdeyim.","Evdesin.","Evde."]},
+            {"k":"mc","q":"<b>Haklısın.</b> — что это?","o":["Ты прав.","Я прав.","Он прав.","Вы правы."],"why":"<b>-sın</b> — это «ты».","say":"Haklısın"},
+            {"k":"learn","t":"«Не» = değil","b":"«Не» — отдельное слово <b>değil</b>, и хвостик переезжает на него:","ex":[["Hazır değilim.","Я не готов."],["Aç değilim.","Я не голоден."],["Sorun değil.","Не проблема."]]},
+            {"k":"learn","t":"Вопрос: mı + хвостик","b":"","ex":[["Hazır mısın?","Ты готов?"],["Meşgul müsün?","Ты занят?"],["Evde misin?","Ты дома?"]]},
+            {"k":"mc","q":"Как спросить «Ты занят?»","o":["Meşgul müsün?","Meşgulsün.","Meşgul değilim.","Meşgul müyüm?"]},
+            {"k":"build","ru":"Я не голоден.","a":"Aç değilim.","x":["Açım","değilsin"]},
+            {"k":"build","ru":"Ты дома?","a":"Evde misin?","x":["Evdeyim","mıyım?"]}
+          ]
+        },
+        {
+          "id": "t6",
+          "t": "Есть и нет: var, yok",
+          "steps": [
+            {"k":"learn","t":"var и yok","b":"<b>var</b> — есть, имеется. <b>yok</b> — нет, отсутствует. Самые полезные слова в магазине и кафе.","ex":[["Su var mı?","Вода есть?"],["Yok.","Нету."],["Sorun yok.","Нет проблем."],["Burada wifi var mı?","Здесь есть wifi?"]]},
+            {"k":"learn","t":"У меня есть","b":"«У меня есть» — это «мой» + <b>var</b>:","ex":[["Vaktim yok.","У меня нет времени."],["Arabam var.","У меня есть машина."],["Sorun var mı?","Есть проблемы?"]]},
+            {"k":"match","p":[["var","есть"],["yok","нет"],["Sorun yok","Нет проблем"],["Vaktim yok","Нет времени"],["var mı?","есть ли?"]]},
+            {"k":"mc","q":"Как спросить «Хлеб есть?»","o":["Ekmek var mı?","Ekmek yok.","Ekmek mi?","Ekmek değil."]},
+            {"k":"mc","q":"Что выбрать: <b>değil</b> или <b>yok</b>? «Это не мой телефон».","o":["Bu benim telefonum değil.","Bu benim telefonum yok."],"why":"<b>değil</b> — «не является». <b>yok</b> — «не имеется». Телефон есть, просто он не твой, значит değil."},
+            {"k":"build","ru":"Нет проблем.","a":"Sorun yok.","x":["var","değil"]},
+            {"k":"build","ru":"Здесь есть wifi?","a":"Burada wifi var mı?","x":["yok","nerede"]}
+          ]
+        }
+      ]
+    },
+    {
+      "u": "Вопросы",
+      "d": "Кто, что, где, когда, почему, сколько",
+      "c": "#E67E00",
+      "ls": [
+        {
+          "id": "t7",
+          "t": "Что, кто, где",
+          "steps": [
+            {"k":"learn","t":"Главные вопросы","b":"","ex":[["ne?","что?"],["kim?","кто?"],["nerede?","где?"],["nereye?","куда?"],["nereden?","откуда?"]]},
+            {"k":"learn","t":"В жизни","b":"","ex":[["Bu ne?","Что это?"],["Kim o?","Кто это?"],["Neredesin?","Ты где?"],["Nereye gidiyorsun?","Куда идёшь?"],["Nereden geliyorsun?","Откуда идёшь?"]]},
+            {"k":"match","p":[["ne","что"],["kim","кто"],["nerede","где"],["nereye","куда"],["nereden","откуда"]]},
+            {"k":"mc","q":"Друг пишет <b>Neredesin?</b> Что он спрашивает?","o":["Ты где?","Куда идёшь?","Кто ты?","Что делаешь?"],"why":null,"say":"Neredesin"},
+            {"k":"mc","q":"Как спросить «Куда идёшь?»","o":["Nereye gidiyorsun?","Nerede gidiyorsun?","Nereden gidiyorsun?","Ne gidiyorsun?"],"why":"«Куда» — <b>nereye</b>: хвостик <b>-e</b> значит направление."},
+            {"k":"build","ru":"Что это?","a":"Bu ne?","x":["kim","nerede"]},
+            {"k":"build","ru":"Ты где?","a":"Neredesin?","x":["Nereye","Kimsin?"]}
+          ]
+        },
+        {
+          "id": "t8",
+          "t": "Когда, почему, сколько",
+          "steps": [
+            {"k":"learn","t":"Ещё вопросы","b":"","ex":[["ne zaman?","когда?"],["neden? niye?","почему?"],["nasıl?","как?"],["kaç?","сколько (штук)?"],["ne kadar?","сколько (денег, времени)?"],["hangi?","какой (из)?"]]},
+            {"k":"learn","t":"В жизни","b":"","ex":[["Ne zaman geliyorsun?","Когда придёшь?"],["Niye?","Почему? (разговорно)"],["Nasıl gidebilirim?","Как мне добраться?"],["Kaç yaşındasın?","Сколько тебе лет?"],["Ne kadar?","Сколько стоит?"],["Hangi otobüs?","Какой автобус?"]]},
+            {"k":"match","p":[["ne zaman","когда"],["neden","почему"],["nasıl","как"],["kaç","сколько штук"],["hangi","какой"]]},
+            {"k":"mc","q":"Как спросить цену?","o":["Ne kadar?","Ne zaman?","Hangi?","Nasıl?"]},
+            {"k":"mc","q":"<b>Kaç yaşındasın?</b>","o":["Сколько тебе лет?","Сколько стоит?","Когда ты придёшь?","Как ты?"],"why":null,"say":"Kaç yaşındasın"},
+            {"k":"build","ru":"Когда придёшь?","a":"Ne zaman geliyorsun?","x":["Nasıl","kaç"]},
+            {"k":"build","ru":"Какой автобус?","a":"Hangi otobüs?","x":["Ne","kadar"]}
+          ]
+        }
+      ]
+    },
+    {
+      "u": "Город и направления",
+      "d": "Тут, там, налево, рядом",
+      "c": "#8E44D6",
+      "ls": [
+        {
+          "id": "t9",
+          "t": "Тут, там, налево",
+          "steps": [
+            {"k":"learn","t":"Тут и там","b":"<b>bu, şu, o</b> — это, вон то, то (далеко). От них: <b>burada</b> — здесь, <b>şurada</b> — вон там, <b>orada</b> — там.","ex":[["burada","здесь"],["şurada","вон там"],["orada","там"],["buraya","сюда"],["oraya","туда"]]},
+            {"k":"learn","t":"Направления","b":"","ex":[["sağ, sol","право, лево"],["Sağa dön.","Поверни направо."],["Sola dön.","Поверни налево."],["Düz git.","Иди / езжай прямо."],["köşede","на углу"],["yakın, uzak","близко, далеко"]]},
+            {"k":"match","p":[["sağ","право"],["sol","лево"],["düz","прямо"],["yakın","близко"],["uzak","далеко"]]},
+            {"k":"mc","q":"Таксисту: «Остановите здесь». Что сказать?","o":["Burada durun.","Orada durun.","Buraya durun.","Sağa durun."]},
+            {"k":"mc","q":"<b>Düz gidin, sonra sola dönün.</b>","o":["Прямо, потом налево","Налево, потом прямо","Направо, потом прямо","Прямо, потом направо"],"why":null,"say":"Düz gidin, sonra sola dönün"},
+            {"k":"build","ru":"Поверни направо.","a":"Sağa dön.","x":["Sola","git"]},
+            {"k":"build","ru":"Это близко?","a":"Yakın mı?","x":["uzak","Burada"]}
+          ]
+        },
+        {
+          "id": "t10",
+          "t": "Рядом, напротив, внутри",
+          "steps": [
+            {"k":"learn","t":"Где находится","b":"Схема: <b>что-то + -(n)ın + место</b>. Market<b>in</b> yanında — рядом с магазином.","ex":[["yanında","рядом с"],["önünde","перед"],["arkasında","за, позади"],["karşısında","напротив"],["içinde","внутри"],["üstünde","на (сверху)"],["altında","под"]]},
+            {"k":"learn","t":"Примеры","b":"","ex":[["Eczane bankanın yanında.","Аптека рядом с банком."],["Durak okulun önünde.","Остановка перед школой."],["Anahtar masanın üstünde.","Ключ на столе."]]},
+            {"k":"match","p":[["yanında","рядом"],["karşısında","напротив"],["arkasında","позади"],["içinde","внутри"],["altında","под"]]},
+            {"k":"mc","q":"<b>Market evin karşısında.</b>","o":["Магазин напротив дома","Магазин рядом с домом","Магазин за домом","Магазин в доме"],"why":null,"say":"Market evin karşısında"},
+            {"k":"mc","q":"Как сказать «под столом»?","o":["masanın altında","masanın üstünde","masanın içinde","masanın önünde"]},
+            {"k":"build","ru":"Аптека рядом с банком.","a":"Eczane bankanın yanında.","x":["önünde","banka"]}
+          ]
+        }
+      ]
+    },
+    {
+      "u": "Чего я хочу",
+      "d": "Хочу, надо, можно. Магазин и кафе",
+      "c": "#E0245E",
+      "ls": [
+        {
+          "id": "t11",
+          "t": "Хочу, надо, можно",
+          "steps": [
+            {"k":"learn","t":"Хочу","b":"<b>istiyorum</b> — хочу. Что хочешь, ставишь перед ним. Хочешь что-то сделать — глагол на <b>-mek / -mak</b>.","ex":[["Bir çay istiyorum.","Хочу чай."],["İstemiyorum.","Не хочу."],["Gitmek istiyorum.","Хочу пойти."]]},
+            {"k":"learn","t":"Надо","b":"<b>lazım</b> — нужно. В речи звучит постоянно.","ex":[["Bana su lazım.","Мне нужна вода."],["Gitmem lazım.","Мне надо идти."],["Ne lazım?","Что нужно?"]]},
+            {"k":"learn","t":"Можно?","b":"Вежливая просьба: глагол + <b>-abilir miyim?</b>","ex":[["Alabilir miyim?","Можно взять?"],["Bakabilir miyim?","Можно посмотреть?"],["Oturabilir miyim?","Можно сесть?"],["Hesabı alabilir miyim?","Можно счёт?"]]},
+            {"k":"match","p":[["istiyorum","хочу"],["lazım","нужно"],["alabilir miyim?","можно взять?"],["istemiyorum","не хочу"],["Ne lazım?","Что нужно?"]]},
+            {"k":"mc","q":"Как сказать «Мне надо идти»?","o":["Gitmem lazım.","Gitmek istiyorum.","Gidebilir miyim?","Gidiyorum."]},
+            {"k":"mc","q":"Как вежливо попросить посмотреть товар?","o":["Bakabilir miyim?","Bakıyorum.","Bak!","Bakmak lazım."]},
+            {"k":"build","ru":"Можно счёт?","a":"Hesabı alabilir miyim?","x":["istiyorum","lazım"]},
+            {"k":"build","ru":"Хочу чай.","a":"Bir çay istiyorum.","x":["lazım","alabilir"]}
+          ]
+        },
+        {
+          "id": "t12",
+          "t": "В магазине и кафе",
+          "steps": [
+            {"k":"learn","t":"Покупки","b":"","ex":[["Bu ne kadar?","Сколько это стоит?"],["İki tane, lütfen.","Две штуки, пожалуйста."],["Kartla ödeyebilir miyim?","Можно картой?"],["Poşet istemiyorum.","Пакет не нужен."],["Bu kadar.","Это всё."]]},
+            {"k":"learn","t":"В кафе","b":"","ex":[["Bakar mısınız?","Можно вас? (официанту)"],["Menüyü alabilir miyim?","Можно меню?"],["Paket olsun.","С собой."],["Şekersiz olsun.","Без сахара."],["Hesap, lütfen.","Счёт, пожалуйста."]]},
+            {"k":"match","p":[["Ne kadar?","Сколько стоит?"],["Paket olsun","С собой"],["Bu kadar","Это всё"],["Bakar mısınız?","Можно вас?"],["tane","штука"]]},
+            {"k":"mc","q":"Как позвать официанта?","o":["Bakar mısınız?","Bakıyorum.","Bana bak!","Buyurun."]},
+            {"k":"mc","q":"Продавец: <b>Başka bir şey?</b> Тебе больше ничего не нужно. Ответ:","o":["Bu kadar, teşekkürler.","Başka bir şey.","Paket olsun.","Ne kadar?"]},
+            {"k":"build","ru":"Две штуки, пожалуйста.","a":"İki tane, lütfen.","x":["bir","kadar"]},
+            {"k":"build","ru":"Можно картой?","a":"Kartla ödeyebilir miyim?","x":["Nakit","istiyorum"]}
+          ]
+        }
+      ]
+    },
+    {
+      "u": "Говорим о делах",
+      "d": "Сейчас, вчера, завтра: самые частые формы",
+      "c": "#0B93B8",
+      "ls": [
+        {
+          "id": "t13",
+          "t": "Что ты делаешь?",
+          "steps": [
+            {"k":"learn","t":"Сейчас: -iyor","b":"Всё, что происходит сейчас, — на <b>-iyor</b>. «Я» — <b>-iyorum</b>, «ты» — <b>-iyorsun</b>.","ex":[["Ne yapıyorsun?","Что делаешь?"],["Çalışıyorum.","Работаю."],["Geliyorum.","Иду (к тебе)."],["Yoldayım.","Я в пути."],["Anlamıyorum.","Не понимаю."],["Bilmiyorum.","Не знаю."]]},
+            {"k":"match","p":[["Geliyorum","Иду"],["Anlamıyorum","Не понимаю"],["Bilmiyorum","Не знаю"],["Bekliyorum","Жду"],["Çalışıyorum","Работаю"]]},
+            {"k":"mc","q":"Как сказать «Я жду»?","o":["Bekliyorum.","Bekledim.","Bekleyeceğim.","Beklerim."]},
+            {"k":"gen","topics":["pres"],"n":3},
+            {"k":"gen","topics":["presNeg"],"n":2},
+            {"k":"build","ru":"Что делаешь?","a":"Ne yapıyorsun?","x":["yaptın?","Nerede"]},
+            {"k":"build","ru":"Не понимаю, извините.","a":"Anlamıyorum, pardon.","x":["Anladım,","lütfen"]}
+          ]
+        },
+        {
+          "id": "t14",
+          "t": "Что было вчера",
+          "steps": [
+            {"k":"learn","t":"Прошлое: -di","b":"Сделанное действие — на <b>-di</b>. «Я» — <b>-dim</b>, «ты» — <b>-din</b>.","ex":[["Ne yaptın?","Что ты сделал?"],["Gittim.","Я сходил, съездил."],["Geldim.","Я пришёл."],["Yedim.","Я поел."],["Anladım.","Понял."],["Oldu.","Готово, получилось."],["Bitti.","Закончилось."]]},
+            {"k":"match","p":[["Anladım","Понял"],["Geldim","Пришёл"],["Oldu","Готово"],["Bitti","Закончилось"],["Yedim","Поел"]]},
+            {"k":"mc","q":"<b>Gördün mü?</b>","o":["Ты видел?","Ты смотришь?","Ты увидишь?","Ты пришёл?"],"why":null,"say":"Gördün mü"},
+            {"k":"gen","topics":["past"],"n":3},
+            {"k":"gen","topics":["pastNeg"],"n":2},
+            {"k":"build","ru":"Я пришёл, ты где?","a":"Geldim, neredesin?","x":["Geliyorum,","nereye"]}
+          ]
+        },
+        {
+          "id": "t15",
+          "t": "Планы на завтра",
+          "steps": [
+            {"k":"learn","t":"Будущее: -ecek","b":"Планы — на <b>-ecek / -acak</b>. «Я» — <b>-eceğim</b>.","ex":[["Ne yapacaksın?","Что будешь делать?"],["Yarın gideceğim.","Завтра поеду."],["Akşam arayacağım.","Вечером позвоню."],["Görüşeceğiz.","Увидимся."]]},
+            {"k":"learn","t":"Как говорят вживую","b":"В речи окончание сжимают. Ты это точно слышал:","ex":[["gelicem","= geleceğim, приду"],["yapıcam","= yapacağım, сделаю"],["arıcam","= arayacağım, позвоню"],["gidicez","= gideceğiz, пойдём"]]},
+            {"k":"mc","q":"Что значит <b>arıcam</b>?","o":["позвоню","звоню","звонил","звони"],"why":null,"say":"arıcam"},
+            {"k":"gen","topics":["fut"],"n":4},
+            {"k":"build","ru":"Вечером позвоню.","a":"Akşam arayacağım.","x":["arıyorum","Sabah"]}
+          ]
+        },
+        {
+          "id": "t16",
+          "t": "Обычно и вежливые просьбы",
+          "steps": [
+            {"k":"learn","t":"Форма на -r","b":"Она значит «обычно» или «обещаю». А с вопросом получается вежливая просьба.","ex":[["Her gün çay içerim.","Каждый день пью чай."],["Yarın ararım.","Завтра наберу (обещаю)."],["Yardım eder misiniz?","Не поможете?"],["Olur.","Ладно, ок."],["Olmaz.","Нельзя, не пойдёт."],["Bilmem.","Без понятия."]]},
+            {"k":"match","p":[["Olur","Ладно"],["Olmaz","Нельзя"],["Bilmem","Без понятия"],["Ararım","Наберу"],["Bakar mısınız?","Можно вас?"]]},
+            {"k":"mc","q":"Коллега: <b>Kahve içer misin?</b> Ответь «ладно, давай»:","o":["Olur.","Olmaz.","Bilmem.","İçtim."]},
+            {"k":"gen","topics":["aor"],"n":3}
+          ]
+        }
+      ]
+    },
+    {
+      "u": "Числа и время",
+      "d": "Цены, часы, дни недели",
+      "c": "#C98A00",
+      "ls": [
+        {
+          "id": "t17",
+          "t": "Числа",
+          "steps": [
+            {"k":"learn","t":"От 1 до 10","b":"","ex":[["bir","1"],["iki","2"],["üç","3"],["dört","4"],["beş","5"],["altı","6"],["yedi","7"],["sekiz","8"],["dokuz","9"],["on","10"]]},
+            {"k":"match","p":[["bir","1"],["üç","3"],["beş","5"],["yedi","7"],["dokuz","9"]]},
+            {"k":"match","p":[["iki","2"],["dört","4"],["altı","6"],["sekiz","8"],["on","10"]]},
+            {"k":"learn","t":"Десятки","b":"Числа складываются как в русском: <b>yirmi beş</b> — 25.","ex":[["yirmi","20"],["otuz","30"],["kırk","40"],["elli","50"],["altmış","60"],["yetmiş","70"],["seksen","80"],["doksan","90"],["yüz","100"],["bin","1000"]]},
+            {"k":"match","p":[["yirmi","20"],["kırk","40"],["elli","50"],["seksen","80"],["yüz","100"]]},
+            {"k":"mc","q":"45 — это…","o":["kırk beş","dört beş","elli dört","kırk dört"]},
+            {"k":"mc","q":"<b>yetmiş iki</b> — это…","o":["72","27","62","82"],"why":null,"say":"yetmiş iki"},
+            {"k":"mc","q":"350 лир — это…","o":["üç yüz elli lira","üç elli lira","otuz beş lira","üç yüz beş lira"]},
+            {"k":"build","ru":"Сто пятьдесят лир.","a":"Yüz elli lira.","x":["bin","beş"]}
+          ]
+        },
+        {
+          "id": "t18",
+          "t": "Время и дни",
+          "steps": [
+            {"k":"learn","t":"Который час?","b":"<b>Saat kaç?</b> — который час? <b>Saat kaçta?</b> — во сколько? Ответ на «во сколько» получает хвостик <b>-de / -te</b>.","ex":[["Saat üç.","Три часа."],["Saat üç buçuk.","Половина четвёртого (3:30)."],["Saat beşte.","В пять."],["Saat dokuzda.","В девять."]]},
+            {"k":"mc","q":"Тебя спрашивают <b>Saat kaçta?</b> Ответь «в восемь»:","o":["Saat sekizde.","Saat sekiz.","Sekiz saat.","Saat sekize."]},
+            {"k":"learn","t":"Дни","b":"","ex":[["bugün","сегодня"],["yarın","завтра"],["dün","вчера"],["Pazartesi","понедельник"],["Cuma","пятница"],["hafta sonu","выходные"]]},
+            {"k":"match","p":[["bugün","сегодня"],["yarın","завтра"],["dün","вчера"],["Cuma","пятница"],["Pazar","воскресенье"]]},
+            {"k":"mc","q":"<b>Cumartesi</b> — это…","o":["суббота","пятница","среда","воскресенье"],"why":"Cuma (пятница) + ertesi (следующий день) = Cumartesi.","say":"Cumartesi"},
+            {"k":"build","ru":"Завтра в пять.","a":"Yarın saat beşte.","x":["Dün","beş"]}
+          ]
+        }
+      ]
+    },
+    {
+      "u": "Звучать как местный",
+      "d": "Связки и живые реакции",
+      "c": "#E0332A",
+      "ls": [
+        {
+          "id": "t19",
+          "t": "Связки",
+          "steps": [
+            {"k":"learn","t":"Чтобы фразы были длиннее","b":"","ex":[["ama","но"],["çünkü","потому что"],["yani","то есть, короче"],["aslında","на самом деле"],["galiba","кажется"],["zaten","и так уже"],["o yüzden","поэтому"]]},
+            {"k":"match","p":[["ama","но"],["çünkü","потому что"],["yani","то есть"],["aslında","на самом деле"],["galiba","кажется"]]},
+            {"k":"mc","q":"<b>Gelemem, çünkü çalışıyorum.</b>","o":["Не могу прийти, потому что работаю","Не могу прийти, но работаю","Приду, потому что работаю","Работаю, поэтому приду"],"why":null,"say":"Gelemem, çünkü çalışıyorum"},
+            {"k":"build","ru":"Кажется, он дома.","a":"Galiba evde.","x":["Çünkü","ama"]},
+            {"k":"build","ru":"Я и так знаю.","a":"Zaten biliyorum.","x":["Ama","bilmiyorum"]}
+          ]
+        },
+        {
+          "id": "t20",
+          "t": "Живые реакции",
+          "steps": [
+            {"k":"learn","t":"Реакции","b":"","ex":[["Aynen!","Точно! Именно!"],["Tamam.","Ок."],["Tabii.","Конечно."],["Harbi mi?","Серьёзно?"],["Yok artık!","Да ладно!"],["Hadi ya!","Да ну!"],["Boş ver.","Забей."],["…, değil mi?","…, правда? да ведь?"]]},
+            {"k":"match","p":[["Aynen","Точно"],["Harbi mi?","Серьёзно?"],["Yok artık!","Да ладно!"],["Boş ver","Забей"],["Tabii","Конечно"]]},
+            {"k":"mc","q":"Друг рассказывает невероятную новость. Твоя реакция:","o":["Yok artık!","Boş ver.","Tamam.","Rica ederim."]},
+            {"k":"mc","q":"<b>Güzel, değil mi?</b>","o":["Красиво, правда?","Некрасиво.","Это красиво?","Совсем не красиво."],"why":null,"say":"Güzel, değil mi"},
+            {"k":"build","ru":"Серьёзно? Да ладно!","a":"Harbi mi? Yok artık!","x":["Aynen","Tamam"]}
+          ]
+        }
+      ]
+    }
+  ],
+  "gram": [
+    {
+      "u": "Гармония гласных",
+      "d": "Главный секрет турецкого: почему ev-ler, но okul-lar",
+      "c": "#007AFF",
+      "ls": [
+        {
+          "id": "g1",
+          "t": "Две коробки: e или a",
+          "steps": [
+            {"k":"learn","t":"Хвостики меняются","b":"К турецкому слову цепляются хвостики. Например, <b>-ler</b> делает «много»:<div class=\"pair\"><span>ev → ev<b>ler</b></span><span>дома</span></div><div class=\"pair\"><span>okul → okul<b>lar</b></span><span>школы</span></div>Хвостик один и тот же, но в <b>okul</b> он стал <b>-lar</b>. Почему — сейчас разберём.","ex":[]},
+            {"k":"learn","t":"Правило двух коробок","b":"Все гласные разложены по двум коробкам:<div class=\"boxes\"><div class=\"box b1\"><div class=\"bv\">e i ö ü</div><div class=\"bt\">хвостик с <b>e</b></div></div><div class=\"box b2\"><div class=\"bv\">a ı o u</div><div class=\"bt\">хвостик с <b>a</b></div></div></div>Берёшь <b>последнюю</b> гласную слова, смотришь, в какой она коробке, — и всё.","ex":[["kalem → kalemler","последняя e → -ler"],["kitap → kitaplar","последняя a → -lar"],["göz → gözler","последняя ö → -ler"],["telefon → telefonlar","последняя o → -lar"]]},
+            {"k":"gen","topics":["plural"],"n":4},
+            {"k":"learn","t":"Только последняя","b":"В длинном слове смотри только на <b>последнюю</b> гласную. В слове <b>bilgisayar</b> гласные i, i, a, а — последняя <b>a</b>, значит bilgisayar<b>lar</b>.","ex":[]},
+            {"k":"gen","topics":["plural"],"n":4}
+          ]
+        },
+        {
+          "id": "g2",
+          "t": "Четыре пары: i, ı, u, ü",
+          "steps": [
+            {"k":"learn","t":"Когда вариантов четыре","b":"У некоторых хвостиков не 2, а 4 формы. Например, «мой»: ev<b>im</b>, kız<b>ım</b>, okul<b>um</b>, göz<b>üm</b>.","ex":[]},
+            {"k":"learn","t":"Правило пар","b":"Гласные живут парами. Последняя гласная слова зовёт <b>вторую букву своей пары</b>:<div class=\"boxes four\"><div class=\"box\"><div class=\"bv\">a ı</div><div class=\"bt\">→ <b>ı</b></div></div><div class=\"box\"><div class=\"bv\">e i</div><div class=\"bt\">→ <b>i</b></div></div><div class=\"box\"><div class=\"bv\">o u</div><div class=\"bt\">→ <b>u</b></div></div><div class=\"box\"><div class=\"bv\">ö ü</div><div class=\"bt\">→ <b>ü</b></div></div></div>","ex":[["iş → işim","i → i"],["kız → kızım","ı → ı"],["okul → okulum","u → u"],["göz → gözüm","ö → ü"]]},
+            {"k":"gen","topics":["poss1"],"n":4},
+            {"k":"learn","t":"Слово на гласную","b":"Если слово кончается на гласную, соединительная гласная не нужна: araba → araba<b>m</b>, kahve → kahve<b>m</b>.","ex":[]},
+            {"k":"gen","topics":["poss1"],"n":4}
+          ]
+        },
+        {
+          "id": "g3",
+          "t": "Глухие буквы: d → t",
+          "steps": [
+            {"k":"learn","t":"Где? = -de","b":"Хвостик «где» — <b>-de / -da</b>, по двум коробкам: ev<b>de</b> — дома, okul<b>da</b> — в школе.","ex":[]},
+            {"k":"gen","topics":["loc"],"n":3},
+            {"k":"learn","t":"Fıstıkçı Şahap","b":"Запомни фразу <b>fıstıkçı şahap</b> («Шахап, продавец фисташек»). В ней все «глухие» буквы: <b>f s t k ç ş h p</b>. Если слово кончается на одну из них, <b>d</b> в хвостике становится <b>t</b>:","ex":[["ofis → ofiste","s глухая → t"],["kitap → kitapta","p глухая → t"],["Beşiktaş → Beşiktaş'ta","ş глухая → t"]]},
+            {"k":"gen","topics":["loc"],"n":5}
+          ]
+        }
+      ]
+    },
+    {
+      "u": "Где, куда, откуда",
+      "d": "Три падежа для любой бытовой фразы",
+      "c": "#1FA347",
+      "ls": [
+        {
+          "id": "g4",
+          "t": "Куда: -e / -a",
+          "steps": [
+            {"k":"learn","t":"Куда? = -e / -a","b":"","ex":[["eve","домой"],["okula","в школу"],["ofise","в офис"]]},
+            {"k":"learn","t":"После гласной — y","b":"Две гласные подряд турки не любят и вставляют между ними <b>y</b>: araba → araba<b>y</b>a, kahve → kahve<b>y</b>e.","ex":[]},
+            {"k":"learn","t":"Имена через апостроф","b":"У городов и имён хвостик идёт через апостроф: İstanbul'<b>a</b>, Ankara'<b>ya</b>, Kadıköy'<b>e</b>.","ex":[]},
+            {"k":"gen","topics":["dat"],"n":6}
+          ]
+        },
+        {
+          "id": "g5",
+          "t": "Откуда: -den / -dan",
+          "steps": [
+            {"k":"learn","t":"Откуда? = -den / -dan","b":"Работает как «где», только с <b>n</b> на конце. После глухих тоже <b>t</b>.","ex":[["evden","из дома"],["ofisten","из офиса"],["İstanbul'dan","из Стамбула"]]},
+            {"k":"gen","topics":["abl"],"n":4},
+            {"k":"learn","t":"Ловушка","b":"Некоторые глаголы требуют не тот падеж, что в русском:","ex":[["otobüse binmek","сесть в автобус («куда?»)"],["otobüsten inmek","выйти из автобуса"],["köpekten korkmak","бояться собаки («от кого?»)"],["işe başlamak","начать работу"]]},
+            {"k":"gen","topics":["loc","dat","abl"],"n":5}
+          ]
+        },
+        {
+          "id": "g6",
+          "t": "Смягчение: k → ğ, p → b",
+          "steps": [
+            {"k":"learn","t":"Буква меняется","b":"Длинные слова на <b>p, ç, t, k</b> перед гласной «смягчаются»:","ex":[["kitap → kitaba","p → b"],["ağaç → ağaca","ç → c"],["sokak → sokağa","k → ğ"],["renk → renge","nk → ng"]]},
+            {"k":"learn","t":"Короткие — нет","b":"Слова из одного слога обычно не меняются: park → park<b>a</b>, süt → süt<b>e</b>.","ex":[]},
+            {"k":"gen","topics":["dat","acc"],"n":6}
+          ]
+        },
+        {
+          "id": "g7",
+          "t": "Тот самый: -i",
+          "steps": [
+            {"k":"learn","t":"Какой-то или тот самый","b":"Хвостик <b>-i</b> (4 формы, по парам) говорит: «тот самый, конкретный».","ex":[["Kitap okuyorum.","Читаю (какую-то) книгу."],["Kitabı okuyorum.","Читаю ту самую книгу."],["Bu filmi izledin mi?","Ты смотрел этот фильм?"]]},
+            {"k":"learn","t":"Подсказка","b":"Есть <b>bu, şu, o</b> («этот, тот»)? Почти всегда нужен -i. После гласной вставляется <b>y</b>: araba<b>yı</b>, kahve<b>yi</b>.","ex":[]},
+            {"k":"gen","topics":["acc"],"n":6}
+          ]
+        }
+      ]
+    },
+    {
+      "u": "Мой и твой",
+      "d": "Принадлежность и «у меня есть»",
+      "c": "#E67E00",
+      "ls": [
+        {
+          "id": "g8",
+          "t": "Мой, твой, его",
+          "steps": [
+            {"k":"learn","t":"Хвостики принадлежности","b":"<div class=\"tbl\"><div>benim ev<b>im</b> · araba<b>m</b></div><div>senin ev<b>in</b> · araba<b>n</b></div><div>onun ev<b>i</b> · araba<b>sı</b></div><div>bizim ev<b>imiz</b> · araba<b>mız</b></div><div>sizin ev<b>iniz</b> · araba<b>nız</b></div></div>Слово <b>benim</b> можно не говорить: хвостик и так всё сказал. <b>Evim</b> Kadıköy'de — мой дом в Кадыкёе.","ex":[]},
+            {"k":"gen","topics":["poss"],"n":6},
+            {"k":"learn","t":"У меня есть","b":"«У меня есть» — это «мой» + <b>var</b>:","ex":[["Arabam var.","У меня есть машина."],["Vaktim yok.","У меня нет времени."]]},
+            {"k":"gen","topics":["poss"],"n":4}
+          ]
+        }
+      ]
+    },
+    {
+      "u": "Времена",
+      "d": "Сейчас, вчера, завтра, обычно",
+      "c": "#8E44D6",
+      "ls": [
+        {
+          "id": "g9",
+          "t": "Сейчас: -iyor",
+          "steps": [
+            {"k":"learn","t":"Формула","b":"<b>корень + гласная по парам + yor + кто</b><br>gel + <b>i</b> + yor + <b>um</b> = geliyorum","ex":[["geliyorum","я иду"],["alıyorum","я беру"],["görüyorum","я вижу"],["oturuyorum","я сижу"]]},
+            {"k":"learn","t":"Кто делает","b":"После <b>-yor</b> окончание всегда с <b>u</b>:<div class=\"tbl\"><div>ben geliyor<b>um</b></div><div>sen geliyor<b>sun</b></div><div>o geliyor</div><div>biz geliyor<b>uz</b></div><div>siz geliyor<b>sunuz</b></div><div>onlar geliyor<b>lar</b></div></div>","ex":[]},
+            {"k":"gen","topics":["pres"],"n":4},
+            {"k":"learn","t":"Корень на гласную","b":"На <b>a / e</b> — она выпадает: bekle → bekl<b>iyor</b>, anla → anl<b>ıyor</b>. На <b>ı, i, u, ü</b> — просто +yor: oku<b>yor</b>.<br><br>Особые: git → gid<b>iyor</b>, demek → <b>diyor</b>, yemek → <b>yiyor</b>.","ex":[]},
+            {"k":"gen","topics":["pres"],"n":4},
+            {"k":"learn","t":"Не делаю","b":"Вставляем <b>m</b> и гласную: gel<b>mi</b>yorum, anla<b>mı</b>yorum.","ex":[]},
+            {"k":"gen","topics":["presNeg"],"n":4}
+          ]
+        },
+        {
+          "id": "g10",
+          "t": "Прошлое: -di",
+          "steps": [
+            {"k":"learn","t":"Формула","b":"<b>корень + d + гласная по парам + кто</b>. После глухих (fıstıkçı şahap) — <b>t</b>: git<b>ti</b>, iç<b>ti</b>.<div class=\"tbl\"><div>ben geldi<b>m</b></div><div>sen geldi<b>n</b></div><div>o geldi</div><div>biz geldi<b>k</b></div><div>siz geldi<b>niz</b></div><div>onlar geldi<b>ler</b></div></div>","ex":[]},
+            {"k":"gen","topics":["past"],"n":6},
+            {"k":"learn","t":"Не сделал","b":"<b>me / ma</b> перед -di: gel<b>me</b>dim, al<b>ma</b>dım.","ex":[]},
+            {"k":"gen","topics":["pastNeg"],"n":4}
+          ]
+        },
+        {
+          "id": "g11",
+          "t": "Будущее: -ecek",
+          "steps": [
+            {"k":"learn","t":"Формула","b":"<b>корень + ecek / acak + кто</b>. Перед гласной окончания <b>k → ğ</b>.<div class=\"tbl\"><div>ben gel<b>eceğim</b></div><div>sen gel<b>eceksin</b></div><div>o gel<b>ecek</b></div><div>biz gel<b>eceğiz</b></div><div>siz gel<b>eceksiniz</b></div><div>onlar gel<b>ecekler</b></div></div>Корень на гласную — вставляем <b>y</b>: bekle<b>y</b>eceğim.","ex":[]},
+            {"k":"gen","topics":["fut"],"n":8}
+          ]
+        },
+        {
+          "id": "g12",
+          "t": "Обычно: -ir / -ar",
+          "steps": [
+            {"k":"learn","t":"Какой хвостик","b":"<div class=\"tbl\"><div>корень на гласную → <b>-r</b>: oku<b>r</b></div><div>один слог → <b>-ar / -er</b>: yap<b>ar</b>, gid<b>er</b></div><div>несколько слогов → <b>-ir</b>: çalış<b>ır</b></div></div>","ex":[]},
+            {"k":"learn","t":"13 исключений","b":"Эти короткие глаголы берут <b>-ir</b>: al, bil, bul, dur, gel, gör, kal, ol, öl, san, ver, var, vur. Ухо их уже знает: alır, gelir, olur, verir.","ex":[]},
+            {"k":"gen","topics":["aor"],"n":6},
+            {"k":"learn","t":"Отрицание","b":"<b>-mez / -maz</b>, но «я» → <b>-mem</b>, «мы» → <b>-meyiz</b>: gelmem, gelmez, gelmeyiz.","ex":[]},
+            {"k":"gen","topics":["aorNeg"],"n":4}
+          ]
+        }
+      ]
+    },
+    {
+      "u": "Вопросы и «могу»",
+      "d": "Частица mi, -ebil, -meli",
+      "c": "#E0245E",
+      "ls": [
+        {
+          "id": "g13",
+          "t": "Вопрос с mi",
+          "steps": [
+            {"k":"learn","t":"mi пишется отдельно","b":"И меняется по парам: güzel <b>mi</b>, doğru <b>mu</b>, gördün <b>mü</b>.","ex":[]},
+            {"k":"learn","t":"Куда идёт «кто»","b":"В <b>-iyor</b> и <b>-ecek</b> окончание переезжает на mi:<div class=\"tbl\"><div>Geliyor <b>musun</b>?</div><div>Gelecek <b>misin</b>?</div></div>В <b>-di</b> оно остаётся на глаголе:<div class=\"tbl\"><div>Geldi<b>n</b> mi?</div></div>","ex":[]},
+            {"k":"gen","topics":["q"],"n":8}
+          ]
+        },
+        {
+          "id": "g14",
+          "t": "Могу и должен",
+          "steps": [
+            {"k":"learn","t":"Могу: -ebilir","b":"gel<b>ebilir</b>im — я могу прийти. После гласной <b>y</b>: oku<b>y</b>abilirim.","ex":[]},
+            {"k":"gen","topics":["abil"],"n":4},
+            {"k":"learn","t":"Должен: -meli","b":"git<b>meli</b>yim — я должен идти. В речи чаще говорят <b>lazım</b>: Gitmem lazım.","ex":[]},
+            {"k":"gen","topics":["must"],"n":4}
+          ]
+        }
+      ]
+    }
+  ]
+}

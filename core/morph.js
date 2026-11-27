@@ -131,47 +131,23 @@ function must(v,p){
   return {parts:[s,'m'+a+'l'+x,end].filter(Boolean),why:[`Корень + <b>m${a}l${x}</b> («должен»)`,why2(s),'Для «я» и «мы» после гласной вставляем <b>y</b>: -meli<b>y</b>im'],from:s.length-1};
 }
 
-/* ================= grammar data ================= */
-const NOUNS=[
-{w:'ev',r:'дом'},{w:'okul',r:'школа'},{w:'araba',r:'машина'},{w:'kitap',r:'книга',s:'kitab'},{w:'masa',r:'стол'},{w:'ofis',r:'офис'},{w:'oda',r:'комната'},{w:'kapı',r:'дверь'},{w:'telefon',r:'телефон'},{w:'bilgisayar',r:'компьютер'},{w:'ağaç',r:'дерево',s:'ağac'},{w:'sokak',r:'улица',s:'sokağ'},{w:'çocuk',r:'ребёнок',s:'çocuğ'},{w:'dolap',r:'шкаф',s:'dolab'},{w:'ekmek',r:'хлеб',s:'ekmeğ'},{w:'göz',r:'глаз'},{w:'gün',r:'день'},{w:'köprü',r:'мост'},{w:'pazar',r:'рынок'},{w:'market',r:'магазин'},{w:'hastane',r:'больница'},{w:'otobüs',r:'автобус'},{w:'çay',r:'чай'},{w:'kahve',r:'кофе'},{w:'kedi',r:'кошка'},{w:'köpek',r:'собака',s:'köpeğ'},{w:'renk',r:'цвет',s:'reng'},{w:'iş',r:'работа'},{w:'park',r:'парк'},{w:'süt',r:'молоко'},{w:'mutfak',r:'кухня',s:'mutfağ'},{w:'vapur',r:'паром'},{w:'kalem',r:'ручка'},{w:'şirket',r:'компания'},{w:'kız',r:'девушка, дочь'},{w:'yol',r:'дорога'},
-{w:'İstanbul',r:'Стамбул',p:1},{w:'Ankara',r:'Анкара',p:1},{w:'İzmir',r:'Измир',p:1},{w:'Kadıköy',r:'Кадыкёй',p:1},{w:'Beşiktaş',r:'Бешикташ',p:1},{w:'Taksim',r:'Таксим',p:1},{w:'Üsküdar',r:'Ускюдар',p:1},{w:'Türkiye',r:'Турция',p:1},{w:'Antalya',r:'Анталья',p:1}];
-const VERBS=[
-{i:'gelmek',s:'gel',r:'приходить'},{i:'gitmek',s:'git',sf:'gid',r:'идти, ехать'},{i:'almak',s:'al',r:'брать, покупать'},{i:'vermek',s:'ver',r:'давать'},{i:'yapmak',s:'yap',r:'делать'},{i:'bilmek',s:'bil',r:'знать'},{i:'istemek',s:'iste',r:'хотеть'},{i:'görmek',s:'gör',r:'видеть'},{i:'söylemek',s:'söyle',r:'говорить'},{i:'demek',s:'de',sp:'de',r:'сказать'},{i:'beklemek',s:'bekle',r:'ждать'},{i:'anlamak',s:'anla',r:'понимать'},{i:'çalışmak',s:'çalış',r:'работать'},{i:'okumak',s:'oku',r:'читать'},{i:'yazmak',s:'yaz',r:'писать'},{i:'açmak',s:'aç',r:'открывать'},{i:'başlamak',s:'başla',r:'начинать'},{i:'bulmak',s:'bul',r:'находить'},{i:'kullanmak',s:'kullan',r:'использовать'},{i:'ödemek',s:'öde',r:'платить'},{i:'aramak',s:'ara',r:'звонить, искать'},{i:'sormak',s:'sor',r:'спрашивать'},{i:'düşünmek',s:'düşün',r:'думать'},{i:'unutmak',s:'unut',r:'забывать'},{i:'sevmek',s:'sev',r:'любить'},{i:'yemek',s:'ye',sp:'ye',r:'есть (еду)'},{i:'içmek',s:'iç',r:'пить'},{i:'uyumak',s:'uyu',r:'спать'},{i:'oturmak',s:'otur',r:'сидеть, жить'},{i:'yürümek',s:'yürü',r:'идти пешком'},{i:'binmek',s:'bin',r:'садиться (в транспорт)'},{i:'konuşmak',s:'konuş',r:'разговаривать'},{i:'dinlemek',s:'dinle',r:'слушать'},{i:'göndermek',s:'gönder',r:'отправлять'},{i:'taşınmak',s:'taşın',r:'переезжать'},{i:'değiştirmek',s:'değiştir',r:'менять'},{i:'kalkmak',s:'kalk',r:'вставать'},{i:'beğenmek',s:'beğen',r:'нравиться'},{i:'yardım etmek',s:'yardım et',sf:'yardım ed',r:'помогать'},{i:'öğrenmek',s:'öğren',r:'учить'}];
-
-const TOPICS={
-  plural:{n:'Много: -ler / -lar',g:'Слова'},
-  poss1:{n:'Мой: -im',g:'Слова'},
-  poss:{n:'Мой, твой, наш',g:'Слова'},
-  loc:{n:'Где? -de',g:'Падежи'},
-  dat:{n:'Куда? -e',g:'Падежи'},
-  abl:{n:'Откуда? -den',g:'Падежи'},
-  acc:{n:'Тот самый: -i',g:'Падежи'},
-  pres:{n:'Сейчас: -iyor',g:'Глаголы'},
-  presNeg:{n:'Не делаю: -miyor',g:'Глаголы'},
-  past:{n:'Прошлое: -di',g:'Глаголы'},
-  pastNeg:{n:'Не сделал: -medi',g:'Глаголы'},
-  fut:{n:'Будущее: -ecek',g:'Глаголы'},
-  aor:{n:'Обычно: -ir / -ar',g:'Глаголы'},
-  aorNeg:{n:'Обычно не: -mez',g:'Глаголы'},
-  q:{n:'Вопрос с mi',g:'Глаголы'},
-  abil:{n:'Могу: -ebilir',g:'Глаголы'},
-  must:{n:'Должен: -meli',g:'Глаголы'}
-};
+/* ================= question generator =================
+   Nouns, verbs and topic names come from the course package (grammar.json): G = {nouns, verbs} */
 const TASK={plural:'Сделай «много»',loc:'Где? Добавь -de / -da',dat:'Куда? Добавь -e / -a',abl:'Откуда? Добавь -den / -dan',acc:'«Тот самый»: добавь -i'};
 const TNAME={pres:'сейчас',presNeg:'«не» сейчас',past:'в прошлом',pastNeg:'«не» в прошлом',fut:'в будущем',aor:'обычно',aorNeg:'обычно «не»',abil:'могу',must:'должен'};
 
 /* A grammar question as data: prompt {kind, task, word, tr, lead?, q?}, the answer and its parts.
    The screen draws the prompt; task and tr are course text in the base language. */
-function genQ(t){
+function genQ(t,G){
   if(['plural','loc','dat','abl','acc','poss','poss1'].includes(t)){
-    const pool=(t==='plural'||t.startsWith('poss'))?NOUNS.filter(n=>!n.p):NOUNS;
+    const pool=(t==='plural'||t.startsWith('poss'))?G.nouns.filter(n=>!n.p):G.nouns;
     const n=pick(pool), p=t==='poss1'?0:Math.floor(random()*5);
     const r=nounForm(n,t==='poss1'?'poss':t,p); let prompt;
     if(t.startsWith('poss')) prompt={kind:'sent',task:['мой','твой','его / её','наш','ваш'][p],lead:PGEN[p],word:n.w,tr:n.r};
     else prompt={kind:'word',task:TASK[t],word:n.w,tr:n.r};
     return {t,prompt,...r,answer:r.parts.join('')};
   }
-  const v=pick(VERBS), p=Math.floor(random()*6); let r, label;
+  const v=pick(G.verbs), p=Math.floor(random()*6); let r, label;
   if(t==='q'){const tn=pick(['pres','past','fut']); r=quest(v,p,tn); label='вопрос, '+{pres:'сейчас',past:'в прошлом',fut:'в будущем'}[tn];}
   else{
     let neg=false; if(t==='fut'&&random()<.2)neg=true;
@@ -190,4 +166,22 @@ function mkOptions(q){
   return shuffle([ans,...d.slice(0,3)]);
 }
 
-export {V,v2,v4,lastV,endV,endH,nounForm,pres,past,fut,aor,quest,abil,must,P,PRU,PGEN,NOUNS,VERBS,TOPICS,TASK,TNAME,genQ,mkOptions};
+/* Every form the generator can ask about, for recording audio: [pack, text, isQuestion] in a fixed order */
+function formsForAudio(G){
+  const out=[], J=r=>r.parts.join(''), add=(pack,r,q)=>out.push([pack,J(r),!!q]);
+  const common=G.nouns.filter(n=>!n.p);
+  common.forEach(n=>add('g-plural',nounForm(n,'plural',0)));
+  common.forEach(n=>[0,1,2,3,4].forEach(p=>add('g-poss',nounForm(n,'poss',p))));
+  ['loc','dat','abl','acc'].forEach(k=>G.nouns.forEach(n=>add('g-'+k,nounForm(n,k,0))));
+  G.verbs.forEach(v=>[0,1,2,3,4,5].forEach(p=>{
+    add('g-pres',pres(v,p,false));add('g-presNeg',pres(v,p,true));
+    add('g-past',past(v,p,false));add('g-pastNeg',past(v,p,true));
+    add('g-fut',fut(v,p,false));add('g-fut',fut(v,p,true));
+    add('g-aor',aor(v,p,false));add('g-aorNeg',aor(v,p,true));
+    add('g-abil',abil(v,p));add('g-must',must(v,p));
+    ['pres','past','fut'].forEach(t=>add('g-q',quest(v,p,t),true));
+  }));
+  return out;
+}
+
+export {V,v2,v4,lastV,endV,endH,nounForm,pres,past,fut,aor,quest,abil,must,P,PRU,PGEN,TASK,TNAME,genQ,mkOptions,formsForAudio};

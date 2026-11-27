@@ -3,6 +3,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import { readPack } from '../tools/packs.js';
 
 const CORE = new URL('../core/', import.meta.url);
 const files = fs.readdirSync(CORE).filter(f => f.endsWith('.js'));
@@ -23,7 +24,7 @@ test('core does not touch the page, storage or sound', () => {
 });
 
 test('a whole lesson can be played in Node', async () => {
-  const content = await import('../data.js');
+  const pack = readPack('tr-ru');
   const { restore, dayNumber } = await import('../core/progress.js');
   const { indexCourse } = await import('../core/course.js');
   const { createSRS } = await import('../core/srs.js');
@@ -32,9 +33,9 @@ test('a whole lesson can be played in Node', async () => {
   const now = () => new Date(2026, 10, 27, 12);
   const today = () => dayNumber(now());
   const S = restore(null, null, today());
-  const course = indexCourse(content);
+  const course = indexCourse(pack);
   const srs = createSRS(S, { today, has: k => course.DICT.has(k) });
-  const runner = createRunner({ S, srs, now });
+  const runner = createRunner({ S, srs, now, grammar: pack.grammar });
   const cfg = createSessions({ S, course, srs }).lesson('t1');
   assert.ok(runner.start(cfg));
   do {

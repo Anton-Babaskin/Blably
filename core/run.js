@@ -5,7 +5,8 @@ import { pick, shuffle, norm, cmp, fold, hasCyr } from './text.js';
 import { genQ, mkOptions } from './morph.js';
 import { addXP, daily, streak, dayNumber } from './progress.js';
 
-export function createRunner({ S, srs, now }) {
+/* grammar: {nouns, verbs} from the course package, for made-up grammar questions */
+export function createRunner({ S, srs, now, grammar }) {
   let P = null;
   const correctOf = (opts, right) => opts.map((o, i) => o === right ? i : -1).filter(i => i >= 0);
   const lineText = (s, line) => line.map(id => s._t.find(t => t.i === id).w).join(' ');
@@ -35,7 +36,7 @@ export function createRunner({ S, srs, now }) {
       else if (s.k === 'build') { if (!s._t) s._t = shuffle([...s.a.split(' '), ...(s.x || [])].map((w, i) => ({ w, i }))); }
       else if (s.k === 'listen' && s.m === 'build') { if (!s._t) s._t = shuffle([...s.tr.split(' '), ...s.x].map((w, i) => ({ w, i }))); }
       else if (s.k === 'gq') {
-        if (!s.q) { let q, g = 0; do { q = genQ(s.topic); } while (P.seen.has(q.answer) && g++ < 25); s.q = q; }
+        if (!s.q) { let q, g = 0; do { q = genQ(s.topic, grammar); } while (P.seen.has(q.answer) && g++ < 25); s.q = q; }
         P.seen.add(s.q.answer);
         if (!s.q.options) s.q.options = mkOptions(s.q);
       } else if (s.k === 'match') {
