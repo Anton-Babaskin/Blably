@@ -15,6 +15,8 @@
   <img src="https://img.shields.io/badge/HTML-CSS-2F6BFF?style=flat-square" alt="HTML CSS">
   <img src="https://img.shields.io/badge/JavaScript-vanilla-2F6BFF?style=flat-square&logo=javascript&logoColor=white" alt="Vanilla JS">
   <img src="https://img.shields.io/badge/%D0%B1%D0%B5%D0%B7%20%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B8-5FA2FF?style=flat-square" alt="без сборки">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/code-AGPL--3.0-0E1B3D?style=flat-square" alt="AGPL-3.0"></a>
+  <a href="LICENSE-CONTENT.md"><img src="https://img.shields.io/badge/content-CC%20BY--NC--SA%204.0-0E1B3D?style=flat-square" alt="CC BY-NC-SA 4.0"></a>
   <img src="https://img.shields.io/github/last-commit/Anton-Babaskin/Settlingo?style=flat-square&color=7F8BA8" alt="last commit">
 </p>
 
@@ -91,8 +93,8 @@ python3 -m http.server 8000
 
 </details>
 
-## Благодарности
+## Лицензия
 
-Голос: [Piper](https://github.com/rhasspy/piper) `tr_TR-dfki-medium`, обучен на [dfki-ot-data](https://github.com/marytts/dfki-ot-data/) под лицензией [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/): записи можно использовать только некоммерчески, с указанием источника и на тех же условиях. Шрифт: Nunito, [SIL Open Font License 1.1](https://openfontlicense.org).
+Код: [AGPL-3.0-or-later](LICENSE). Уроки, словарь и звук: [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/), только некоммерческое использование с указанием источника. Турецкий голос: [Piper](https://github.com/rhasspy/piper) `tr_TR-dfki-medium`, обучен на [dfki-ot-data](https://github.com/marytts/dfki-ot-data/). Шрифт: Nunito, SIL OFL 1.1. Подробно: [LICENSE-CONTENT.md](LICENSE-CONTENT.md).
 
 <p align="center"><br><img src="brand/settlingo-icon.svg" width="40" alt=""><br><sub>Сделано в Стамбуле</sub></p>

@@ -1,5 +1,8 @@
-const fs=require('fs'),vm=require('vm');
-const src=['util.js','morph.js','data.js'].map(f=>fs.readFileSync('../'+f,'utf8')).join('\n').replace(/'use strict';/g,'');
+// Lists every Turkish string the app can speak, grouped into audio packs. Output: tools/keys.json
+// Usage: node tools/list-phrases.js
+const fs=require('fs'),vm=require('vm'),path=require('path');
+const ROOT=path.join(__dirname,'..');
+const src=['util.js','morph.js','data.js'].map(f=>fs.readFileSync(path.join(ROOT,f),'utf8')).join('\n').replace(/'use strict';/g,'');
 const out={}; const seen=new Set();
 const code=src+`
 const add=(pack,t,q)=>{const k=speakKey(t);if(!k||hasCyr(k)||seen.has(k))return;seen.add(k);(out[pack]=out[pack]||[]).push([k,q?k+'?':k])};
@@ -27,5 +30,5 @@ VERBS.forEach(v=>PS.forEach(p=>{
 }));
 `;
 vm.runInNewContext(code,{out,seen,console});
-fs.writeFileSync('./keys.json',JSON.stringify(out));
+fs.writeFileSync(path.join(__dirname,'keys.json'),JSON.stringify(out));
 for(const k in out)console.log(k,out[k].length);

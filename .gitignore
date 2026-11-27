@@ -1,0 +1,4 @@
+tools/keys.json
+tools/voices/
+__pycache__/
+.DS_Store
