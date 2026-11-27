@@ -1,6 +1,6 @@
 {
-  "name": "Settlingo: турецкий для жизни",
-  "short_name": "Settlingo",
+  "name": "Blably: турецкий и русский",
+  "short_name": "Blably",
   "description": "Турецкий для жизни в Стамбуле: фразы, грамматика, аудирование и повторение по интервалам.",
   "lang": "ru",
   "start_url": "./",
@@ -9,8 +9,8 @@
   "background_color": "#F5F8FF",
   "theme_color": "#F5F8FF",
   "icons": [
-    { "src": "brand/settlingo-icon-192.png", "sizes": "192x192", "type": "image/png" },
-    { "src": "brand/settlingo-icon-512.png", "sizes": "512x512", "type": "image/png" },
-    { "src": "brand/settlingo-icon.svg", "sizes": "any", "type": "image/svg+xml" }
+    { "src": "brand/blably-icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "brand/blably-icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "brand/blably-icon.svg", "sizes": "any", "type": "image/svg+xml" }
   ]
 }

@@ -1,4 +1,4 @@
-/* Settlingo: state, spaced repetition, session builders, lesson player, screens */
+/* Blably: state, spaced repetition, session builders, lesson player, screens */
 'use strict';
 
 /* ───────────────────────── State ───────────────────────── */
@@ -485,7 +485,7 @@ const App = (() => {
     const pool = BASE_ITEMS.concat(catItems(catById('phr')), catItems(catById('links'))).filter(x => x.tr.length > 3);
     return pool[today() % pool.length];
   }
-  const topbar = () => `<div class="topbar"><div class="brand">${MARK}<span>Settlingo</span></div><div class="chip-streak" title="Дней подряд">${ICON.flame}<b>${streak()}</b></div></div>`;
+  const topbar = () => `<div class="topbar"><div class="brand">${MARK}<span>Blably</span></div><div class="chip-streak" title="Дней подряд">${ICON.flame}<b>${streak()}</b></div></div>`;
   const tileIcon = (ic, cls) => `<span class="ic-tile ${cls || ''}">${ic}</span>`;
 
   const screens = {

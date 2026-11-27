@@ -1,7 +1,7 @@
-"""Draw the Settlingo logo files in brand/ from Nunito 800 glyph outlines.
+"""Draw the Blably logo files in brand/ from Nunito 800 glyph outlines.
 
 Usage: pip install fonttools brotli && python3 tools/draw-logo.py
-The mark is a speech bubble with an "S" drawn as a winding path: the brand initial and a learning path.
+The mark is a speech bubble with an "S" drawn as a winding path (left from the old name Settlingo; to be redrawn for Blably).
 """
 from pathlib import Path
 from fontTools.ttLib import TTFont
@@ -12,6 +12,7 @@ from fontTools.pens.transformPen import TransformPen
 ROOT = Path(__file__).resolve().parent.parent
 FONT = TTFont(ROOT / 'fonts' / 'nunito-latin-800-normal.woff2')
 BRAND = ROOT / 'brand'
+NAME = 'Blably'   # wordmark text
 
 def outline(text, size):
     cmap, gs, s = FONT.getBestCmap(), FONT.getGlyphSet(), size / FONT['head'].unitsPerEm
@@ -37,14 +38,14 @@ ICON = (f'<rect width="512" height="512" rx="116" fill="url(#bg)"/><rect width="
         f'<g filter="url(#sh)"><path d="{BUBBLE}" fill="#fff"/></g>'
         f'<path d="{S_PATH}" fill="none" stroke="url(#ink)" stroke-width="34" stroke-linecap="round"/>')
 
-(BRAND / 'settlingo-icon.svg').write_text(f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">{DEFS}{ICON}</svg>')
-(BRAND / 'settlingo-mark.svg').write_text(
+(BRAND / 'blably-icon.svg').write_text(f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">{DEFS}{ICON}</svg>')
+(BRAND / 'blably-mark.svg').write_text(
     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="60 100 392 322"><defs><linearGradient id="mb" x1="0" y1="0" x2="1" y2="1">'
     '<stop offset="0" stop-color="#5FA2FF"/><stop offset="1" stop-color="#2652E8"/></linearGradient></defs>'
     f'<path d="{BUBBLE}" fill="url(#mb)"/><path d="{S_PATH}" fill="none" stroke="#fff" stroke-width="34" stroke-linecap="round"/></svg>')
-word, W, H = outline('Settlingo', 120)
-(BRAND / 'settlingo-wordmark.svg').write_text(f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W:.1f} {H:.1f}"><path d="{word}" fill="#0E1B3D"/></svg>')
-for name, ink in (('settlingo-lockup.svg', '#0E1B3D'), ('settlingo-lockup-dark.svg', '#FFFFFF')):
+word, W, H = outline(NAME, 120)
+(BRAND / 'blably-wordmark.svg').write_text(f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W:.1f} {H:.1f}"><path d="{word}" fill="#0E1B3D"/></svg>')
+for name, ink in (('blably-lockup.svg', '#0E1B3D'), ('blably-lockup-dark.svg', '#FFFFFF')):
     size, gap = 150, 34; sc = size * 0.5 / H
     (BRAND / name).write_text(
         f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {size + gap + W * sc:.1f} {size}">{DEFS}'

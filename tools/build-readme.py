@@ -1,4 +1,4 @@
-"""Generate README.md (English), README.uk.md and README.ru.md from one template.
+"""Generate the Blably README.md (English), README.uk.md and README.ru.md from one template.
 
 Usage: python3 tools/build-readme.py
 Edit the texts in T below, never the generated README files by hand.
@@ -6,8 +6,7 @@ Edit the texts in T below, never the generated README files by hand.
 from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 from urllib.parse import quote
-APP='https://anton-babaskin.github.io/Settlingo/'
-REVIEW=APP+'docs/design-review/'
+REPO='https://github.com/Anton-Babaskin/Settlingo'
 def badge(label,msg,color,logo=None,style='for-the-badge'):
     e=lambda s: quote(s.replace('-','--').replace('_','__'),safe='')
     u=f'https://img.shields.io/badge/{e(label)}-{e(msg)}-{color}?style={style}'
@@ -26,8 +25,8 @@ def switcher(cur):
 T={
 'en':dict(
  demo='Open the app',reviewlbl='Design review',live='live',nobuild='no build step',
- intro='**Settlingo** helps people who already live in Istanbul start *speaking* Turkish. You hear the language every day; Settlingo gives you the words, the confidence and a daily habit. Ten minutes a day, right in the browser, free and without sign-up.',
- ui_note='The interface is in Russian for now. Ukrainian and English interfaces and an English course are on the roadmap.',
+ intro='**Blably** is a free app for learning languages both ways: **Turkish for Russian speakers** and **Russian for Turkish speakers**. It is built for people who live next to the language and want to start *speaking* it: words, confidence and a daily habit. Ten minutes a day, right in the browser, without sign-up.',
+ ui_note='Live now: Turkish for Russian speakers, interface in Russian. Russian for Turkish speakers, an English course and interfaces in Ukrainian, English and Turkish are on the roadmap.',
  h_feat='What’s inside',
  feats=[('path','Two tracks','Conversation: 20 lessons of ready-made phrases for real life. Grammar: 14 lessons on how Turkish words are built.'),
         ('repeat','Spaced repetition','Every learned phrase comes back after 1, 3, 7, 16, 35 and 90 days. A mistake brings it back tomorrow.'),
@@ -38,21 +37,21 @@ T={
  h_how='How a day looks',
  flow=['Review what is due','New lesson','Listening','Say it aloud','Phrases return in 1–90 days'],
  h_courses='Courses',
- courses=[('Turkish','Russian','live','34 lessons · 403 words · audio'),('English','Russian, Ukrainian','planned','next big step, see roadmap')],
+ courses=[('Turkish','Russian','live','34 lessons · 403 words · audio'),('Russian','Turkish','planned','Cyrillic, everyday phrases, cases explained through Turkish'),('English','Russian, Ukrainian','planned','A1–A2, work, moving and travel')],
  c_head=('Course','For speakers of','Status','Contents'),
  h_run='Run locally',run_note='It is a static site with no build step. Any static server will do:',run_warn='Opening `index.html` directly from disk will not play audio: browsers block it on `file://`.',
  h_struct='Project structure',
  struct=[('index.html','Page shell and tab bar'),('app.css','Design tokens, components, animations'),('app.js','State, spaced repetition, lesson player, screens'),('data.js','Course content and vocabulary'),('morph.js','Turkish morphology and exercise generator'),('audio.js · audio/','Audio packs and playback'),('brand/ · fonts/','Logo, icons, Nunito'),('docs/design-review/','Design audit, before and after'),('tools/','Scripts that build the audio and the logo')],
  h_road='Roadmap',road_more='Full plan with details',
- road=[('Foundation','offline mode, interface in 3 languages, tests, course packs'),('English course','English for Russian and Ukrainian speakers'),('Better learning','placement test, pronunciation check, dialogues'),('Sync and sharing','progress on all devices, share with friends'),('Mobile apps','App Store and Google Play')],
+ road=[('Foundation','offline mode, interface in 4 languages, tests, two-way course packs'),('English course','English for Russian and Ukrainian speakers'),('Russian for Turks','Cyrillic, phrases and grammar with a Turkish interface'),('Better learning','placement test, pronunciation check, dialogues'),('Sync and sharing','progress on all devices, share with friends'),('Mobile apps','App Store and Google Play')],
  r_head=('Stage','What'),
  h_credits='License',
  credits='Code: [AGPL-3.0-or-later](LICENSE). Lessons, vocabulary and audio: [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/), non-commercial use with attribution. Turkish voice: [Piper](https://github.com/rhasspy/piper) `tr_TR-dfki-medium`, trained on [dfki-ot-data](https://github.com/marytts/dfki-ot-data/). Font: Nunito, SIL OFL 1.1. Details: [LICENSE-CONTENT.md](LICENSE-CONTENT.md).',
  footer='Made in Istanbul'),
 'ru':dict(
  demo='Открыть приложение',reviewlbl='Дизайн-ревью',live='работает',nobuild='без сборки',
- intro='**Settlingo** помогает тем, кто уже живёт в Стамбуле, начать *говорить* по-турецки. Язык вокруг слышен каждый день, а Settlingo даёт слова, уверенность и ежедневную привычку. Десять минут в день, прямо в браузере, бесплатно и без регистрации.',
- ui_note='Интерфейс пока на русском. Украинский и английский интерфейсы и курс английского — в планах.',
+ intro='**Blably** — бесплатное приложение для изучения языков в обе стороны: **турецкий для русскоязычных** и **русский для турков**. Для тех, кто живёт рядом с языком и хочет начать на нём *говорить*: слова, уверенность и ежедневная привычка. Десять минут в день, прямо в браузере, без регистрации.',
+ ui_note='Сейчас работает турецкий для русскоязычных, интерфейс на русском. Русский для турков, курс английского и интерфейс на украинском, английском и турецком — в планах.',
  h_feat='Что внутри',
  feats=[('path','Два трека','Разговорный: 20 уроков готовых фраз для жизни. Грамматика: 14 уроков о том, как устроены турецкие слова.'),
         ('repeat','Повторение по интервалам','Каждая выученная фраза возвращается через 1, 3, 7, 16, 35 и 90 дней. Ошибка возвращает её на завтра.'),
@@ -63,21 +62,21 @@ T={
  h_how='Как выглядит день',
  flow=['Повторить то, что пора','Новый урок','Аудирование','Скажи вслух','Фразы вернутся через 1–90 дней'],
  h_courses='Курсы',
- courses=[('Турецкий','русский','работает','34 урока · 403 слова · озвучка'),('Английский','русский, украинский','в планах','следующий большой шаг, см. план')],
+ courses=[('Турецкий','русский','работает','34 урока · 403 слова · озвучка'),('Русский','турецкий','в планах','кириллица, фразы на каждый день, падежи через турецкие'),('Английский','русский, украинский','в планах','A1–A2, работа, переезд, путешествия')],
  c_head=('Курс','Для тех, кто говорит на','Статус','Что внутри'),
  h_run='Запуск у себя',run_note='Это статический сайт без сборки. Подойдёт любой статический сервер:',run_warn='Если открыть `index.html` прямо с диска, звук не заиграет: браузер блокирует его на `file://`.',
  h_struct='Структура проекта',
  struct=[('index.html','Каркас страницы и нижняя панель'),('app.css','Дизайн-токены, компоненты, анимации'),('app.js','Состояние, повторение по интервалам, плеер уроков, экраны'),('data.js','Содержание курса и словарь'),('morph.js','Турецкая морфология и генератор заданий'),('audio.js · audio/','Аудио-пакеты и воспроизведение'),('brand/ · fonts/','Логотип, иконки, Nunito'),('docs/design-review/','Аудит дизайна, было и стало'),('tools/','Скрипты сборки звука и логотипа')],
  h_road='План развития',road_more='Подробный план',
- road=[('Фундамент','офлайн-режим, интерфейс на 3 языках, тесты, курсы как пакеты'),('Курс английского','английский для русско- и украиноговорящих'),('Качество обучения','тест уровня, проверка произношения, диалоги'),('Синхронизация','прогресс на всех устройствах, делиться с друзьями'),('Мобильные приложения','App Store и Google Play')],
+ road=[('Фундамент','офлайн-режим, интерфейс на 4 языках, тесты, курсы в обе стороны'),('Курс английского','английский для русско- и украиноговорящих'),('Русский для турков','кириллица, фразы и грамматика с турецким интерфейсом'),('Качество обучения','тест уровня, проверка произношения, диалоги'),('Синхронизация','прогресс на всех устройствах, делиться с друзьями'),('Мобильные приложения','App Store и Google Play')],
  r_head=('Этап','Что'),
  h_credits='Лицензия',
  credits='Код: [AGPL-3.0-or-later](LICENSE). Уроки, словарь и звук: [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/), только некоммерческое использование с указанием источника. Турецкий голос: [Piper](https://github.com/rhasspy/piper) `tr_TR-dfki-medium`, обучен на [dfki-ot-data](https://github.com/marytts/dfki-ot-data/). Шрифт: Nunito, SIL OFL 1.1. Подробно: [LICENSE-CONTENT.md](LICENSE-CONTENT.md).',
  footer='Сделано в Стамбуле'),
 'uk':dict(
  demo='Відкрити застосунок',reviewlbl='Дизайн-рев’ю',live='працює',nobuild='без збірки',
- intro='**Settlingo** допомагає тим, хто вже живе в Стамбулі, почати *говорити* турецькою. Мову навколо чути щодня, а Settlingo дає слова, впевненість і щоденну звичку. Десять хвилин на день, просто в браузері, безкоштовно й без реєстрації.',
- ui_note='Інтерфейс поки що російською. Українська та англійська версії інтерфейсу й курс англійської — у планах.',
+ intro='**Blably** — безкоштовний застосунок для вивчення мов в обидва боки: **турецька для російськомовних** і **російська для турків**. Для тих, хто живе поруч із мовою і хоче почати нею *говорити*: слова, впевненість і щоденна звичка. Десять хвилин на день, просто в браузері, без реєстрації.',
+ ui_note='Зараз працює турецька для російськомовних, інтерфейс російською. Російська для турків, курс англійської та інтерфейс українською, англійською й турецькою — у планах.',
  h_feat='Що всередині',
  feats=[('path','Два треки','Розмовний: 20 уроків готових фраз для життя. Граматика: 14 уроків про те, як побудовані турецькі слова.'),
         ('repeat','Інтервальне повторення','Кожна вивчена фраза повертається через 1, 3, 7, 16, 35 і 90 днів. Помилка повертає її на завтра.'),
@@ -88,13 +87,13 @@ T={
  h_how='Як виглядає день',
  flow=['Повторити те, що час','Новий урок','Аудіювання','Скажи вголос','Фрази повернуться через 1–90 днів'],
  h_courses='Курси',
- courses=[('Турецька','російська','працює','34 уроки · 403 слова · озвучення'),('Англійська','російська, українська','у планах','наступний великий крок, див. план')],
+ courses=[('Турецька','російська','працює','34 уроки · 403 слова · озвучення'),('Російська','турецька','у планах','кирилиця, фрази на кожен день, відмінки через турецькі'),('Англійська','російська, українська','у планах','A1–A2, робота, переїзд, подорожі')],
  c_head=('Курс','Для тих, хто говорить','Статус','Що всередині'),
  h_run='Запуск локально',run_note='Це статичний сайт без збірки. Підійде будь-який статичний сервер:',run_warn='Якщо відкрити `index.html` просто з диска, звук не запрацює: браузер блокує його на `file://`.',
  h_struct='Структура проєкту',
  struct=[('index.html','Каркас сторінки та нижня панель'),('app.css','Дизайн-токени, компоненти, анімації'),('app.js','Стан, інтервальне повторення, плеєр уроків, екрани'),('data.js','Зміст курсу та словник'),('morph.js','Турецька морфологія та генератор завдань'),('audio.js · audio/','Аудіопакети та відтворення'),('brand/ · fonts/','Логотип, іконки, Nunito'),('docs/design-review/','Аудит дизайну, було і стало'),('tools/','Скрипти збірки звуку та логотипа')],
  h_road='План розвитку',road_more='Детальний план',
- road=[('Фундамент','офлайн-режим, інтерфейс трьома мовами, тести, курси як пакети'),('Курс англійської','англійська для російсько- та україномовних'),('Якість навчання','тест рівня, перевірка вимови, діалоги'),('Синхронізація','прогрес на всіх пристроях, ділитися з друзями'),('Мобільні застосунки','App Store і Google Play')],
+ road=[('Фундамент','офлайн-режим, інтерфейс чотирма мовами, тести, курси в обидва боки'),('Курс англійської','англійська для російсько- та україномовних'),('Російська для турків','кирилиця, фрази й граматика з турецьким інтерфейсом'),('Якість навчання','тест рівня, перевірка вимови, діалоги'),('Синхронізація','прогрес на всіх пристроях, ділитися з друзями'),('Мобільні застосунки','App Store і Google Play')],
  r_head=('Етап','Що'),
  h_credits='Ліцензія',
  credits='Код: [AGPL-3.0-or-later](LICENSE). Уроки, словник і звук: [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/), лише некомерційне використання із зазначенням джерела. Турецький голос: [Piper](https://github.com/rhasspy/piper) `tr_TR-dfki-medium`, навчений на [dfki-ot-data](https://github.com/marytts/dfki-ot-data/). Шрифт: Nunito, SIL OFL 1.1. Детально: [LICENSE-CONTENT.md](LICENSE-CONTENT.md).',
@@ -121,7 +120,7 @@ flowchart LR
     struct='\n'.join(f'| `{a}` | {b} |' for a,b in t['struct'])
     road='\n'.join(f'| {i+1}. **{a}** | {b} |' for i,(a,b) in enumerate(t['road']))
     md=f'''<p align="center">
-  <a href="{APP}"><img src="docs/assets/banner-{l}.png" alt="Settlingo" width="830"></a>
+  <img src="docs/assets/banner-{l}.png" alt="Blably" width="830">
 </p>
 
 <p align="center">
@@ -129,8 +128,8 @@ flowchart LR
 </p>
 
 <p align="center">
-  <a href="{APP}"><img src="{badge(t['demo'],'GitHub Pages','2F6BFF','github')}" alt="{t['demo']}"></a>
-  <a href="{REVIEW}"><img src="{badge(t['reviewlbl'],'before · after','0E1B3D')}" alt="{t['reviewlbl']}"></a>
+  <img src="https://img.shields.io/badge/T%C3%BCrk%C3%A7e%20%E2%87%84%20%D0%A0%D1%83%D1%81%D1%81%D0%BA%D0%B8%D0%B9-2F6BFF?style=for-the-badge" alt="Türkçe ⇄ Русский">
+  <a href="docs/design-review/"><img src="{badge(t['reviewlbl'],'before · after','0E1B3D')}" alt="{t['reviewlbl']}"></a>
   <br>
   <img src="https://img.shields.io/badge/HTML-CSS-2F6BFF?style=flat-square" alt="HTML CSS">
   <img src="https://img.shields.io/badge/JavaScript-vanilla-2F6BFF?style=flat-square&logo=javascript&logoColor=white" alt="Vanilla JS">
@@ -144,7 +143,7 @@ flowchart LR
 
 > {t['ui_note']}
 
-<p align="center"><img src="docs/assets/screens.png" alt="Settlingo screens" width="830"></p>
+<p align="center"><img src="docs/assets/screens.png" alt="Blably screens" width="830"></p>
 
 ## {t['h_feat']}
 
@@ -196,7 +195,7 @@ python3 -m http.server 8000
 
 {t['credits']}
 
-<p align="center"><br><img src="brand/settlingo-icon.svg" width="40" alt=""><br><sub>{t['footer']}</sub></p>
+<p align="center"><br><img src="brand/blably-icon.svg" width="40" alt=""><br><sub>{t['footer']}</sub></p>
 '''
     (ROOT / FILES[l]).write_text(md, encoding='utf8')
 print('ok')

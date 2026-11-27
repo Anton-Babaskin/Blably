@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://anton-babaskin.github.io/Settlingo/"><img src="docs/assets/banner-ru.png" alt="Settlingo" width="830"></a>
+  <img src="docs/assets/banner-ru.png" alt="Blably" width="830">
 </p>
 
 <p align="center">
@@ -9,8 +9,8 @@
 </p>
 
 <p align="center">
-  <a href="https://anton-babaskin.github.io/Settlingo/"><img src="https://img.shields.io/badge/%D0%9E%D1%82%D0%BA%D1%80%D1%8B%D1%82%D1%8C%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5-GitHub%20Pages-2F6BFF?style=for-the-badge&logo=github&logoColor=white" alt="Открыть приложение"></a>
-  <a href="https://anton-babaskin.github.io/Settlingo/docs/design-review/"><img src="https://img.shields.io/badge/%D0%94%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD--%D1%80%D0%B5%D0%B2%D1%8C%D1%8E-before%20%C2%B7%20after-0E1B3D?style=for-the-badge" alt="Дизайн-ревью"></a>
+  <img src="https://img.shields.io/badge/T%C3%BCrk%C3%A7e%20%E2%87%84%20%D0%A0%D1%83%D1%81%D1%81%D0%BA%D0%B8%D0%B9-2F6BFF?style=for-the-badge" alt="Türkçe ⇄ Русский">
+  <a href="docs/design-review/"><img src="https://img.shields.io/badge/%D0%94%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD--%D1%80%D0%B5%D0%B2%D1%8C%D1%8E-before%20%C2%B7%20after-0E1B3D?style=for-the-badge" alt="Дизайн-ревью"></a>
   <br>
   <img src="https://img.shields.io/badge/HTML-CSS-2F6BFF?style=flat-square" alt="HTML CSS">
   <img src="https://img.shields.io/badge/JavaScript-vanilla-2F6BFF?style=flat-square&logo=javascript&logoColor=white" alt="Vanilla JS">
@@ -20,11 +20,11 @@
   <img src="https://img.shields.io/github/last-commit/Anton-Babaskin/Settlingo?style=flat-square&color=7F8BA8" alt="last commit">
 </p>
 
-**Settlingo** помогает тем, кто уже живёт в Стамбуле, начать *говорить* по-турецки. Язык вокруг слышен каждый день, а Settlingo даёт слова, уверенность и ежедневную привычку. Десять минут в день, прямо в браузере, бесплатно и без регистрации.
+**Blably** — бесплатное приложение для изучения языков в обе стороны: **турецкий для русскоязычных** и **русский для турков**. Для тех, кто живёт рядом с языком и хочет начать на нём *говорить*: слова, уверенность и ежедневная привычка. Десять минут в день, прямо в браузере, без регистрации.
 
-> Интерфейс пока на русском. Украинский и английский интерфейсы и курс английского — в планах.
+> Сейчас работает турецкий для русскоязычных, интерфейс на русском. Русский для турков, курс английского и интерфейс на украинском, английском и турецком — в планах.
 
-<p align="center"><img src="docs/assets/screens.png" alt="Settlingo screens" width="830"></p>
+<p align="center"><img src="docs/assets/screens.png" alt="Blably screens" width="830"></p>
 
 ## Что внутри
 
@@ -49,17 +49,19 @@ flowchart LR
 | Курс | Для тех, кто говорит на | Статус | Что внутри |
 |---|---|---|---|
 | **Турецкий** | русский | <img src="https://img.shields.io/badge/%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D1%82-16A061?style=flat-square" alt="работает"> | 34 урока · 403 слова · озвучка |
-| **Английский** | русский, украинский | <img src="https://img.shields.io/badge/%D0%B2%20%D0%BF%D0%BB%D0%B0%D0%BD%D0%B0%D1%85-B7C1D6?style=flat-square" alt="в планах"> | следующий большой шаг, см. план |
+| **Русский** | турецкий | <img src="https://img.shields.io/badge/%D0%B2%20%D0%BF%D0%BB%D0%B0%D0%BD%D0%B0%D1%85-B7C1D6?style=flat-square" alt="в планах"> | кириллица, фразы на каждый день, падежи через турецкие |
+| **Английский** | русский, украинский | <img src="https://img.shields.io/badge/%D0%B2%20%D0%BF%D0%BB%D0%B0%D0%BD%D0%B0%D1%85-B7C1D6?style=flat-square" alt="в планах"> | A1–A2, работа, переезд, путешествия |
 
 ## План развития
 
 | Этап | Что |
 |---|---|
-| 1. **Фундамент** | офлайн-режим, интерфейс на 3 языках, тесты, курсы как пакеты |
+| 1. **Фундамент** | офлайн-режим, интерфейс на 4 языках, тесты, курсы в обе стороны |
 | 2. **Курс английского** | английский для русско- и украиноговорящих |
-| 3. **Качество обучения** | тест уровня, проверка произношения, диалоги |
-| 4. **Синхронизация** | прогресс на всех устройствах, делиться с друзьями |
-| 5. **Мобильные приложения** | App Store и Google Play |
+| 3. **Русский для турков** | кириллица, фразы и грамматика с турецким интерфейсом |
+| 4. **Качество обучения** | тест уровня, проверка произношения, диалоги |
+| 5. **Синхронизация** | прогресс на всех устройствах, делиться с друзьями |
+| 6. **Мобильные приложения** | App Store и Google Play |
 
 [Подробный план →](ROADMAP.md)
 
@@ -97,4 +99,4 @@ python3 -m http.server 8000
 
 Код: [AGPL-3.0-or-later](LICENSE). Уроки, словарь и звук: [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/), только некоммерческое использование с указанием источника. Турецкий голос: [Piper](https://github.com/rhasspy/piper) `tr_TR-dfki-medium`, обучен на [dfki-ot-data](https://github.com/marytts/dfki-ot-data/). Шрифт: Nunito, SIL OFL 1.1. Подробно: [LICENSE-CONTENT.md](LICENSE-CONTENT.md).
 
-<p align="center"><br><img src="brand/settlingo-icon.svg" width="40" alt=""><br><sub>Сделано в Стамбуле</sub></p>
+<p align="center"><br><img src="brand/blably-icon.svg" width="40" alt=""><br><sub>Сделано в Стамбуле</sub></p>

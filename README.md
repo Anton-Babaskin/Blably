@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://anton-babaskin.github.io/Settlingo/"><img src="docs/assets/banner-en.png" alt="Settlingo" width="830"></a>
+  <img src="docs/assets/banner-en.png" alt="Blably" width="830">
 </p>
 
 <p align="center">
@@ -9,8 +9,8 @@
 </p>
 
 <p align="center">
-  <a href="https://anton-babaskin.github.io/Settlingo/"><img src="https://img.shields.io/badge/Open%20the%20app-GitHub%20Pages-2F6BFF?style=for-the-badge&logo=github&logoColor=white" alt="Open the app"></a>
-  <a href="https://anton-babaskin.github.io/Settlingo/docs/design-review/"><img src="https://img.shields.io/badge/Design%20review-before%20%C2%B7%20after-0E1B3D?style=for-the-badge" alt="Design review"></a>
+  <img src="https://img.shields.io/badge/T%C3%BCrk%C3%A7e%20%E2%87%84%20%D0%A0%D1%83%D1%81%D1%81%D0%BA%D0%B8%D0%B9-2F6BFF?style=for-the-badge" alt="Türkçe ⇄ Русский">
+  <a href="docs/design-review/"><img src="https://img.shields.io/badge/Design%20review-before%20%C2%B7%20after-0E1B3D?style=for-the-badge" alt="Design review"></a>
   <br>
   <img src="https://img.shields.io/badge/HTML-CSS-2F6BFF?style=flat-square" alt="HTML CSS">
   <img src="https://img.shields.io/badge/JavaScript-vanilla-2F6BFF?style=flat-square&logo=javascript&logoColor=white" alt="Vanilla JS">
@@ -20,11 +20,11 @@
   <img src="https://img.shields.io/github/last-commit/Anton-Babaskin/Settlingo?style=flat-square&color=7F8BA8" alt="last commit">
 </p>
 
-**Settlingo** helps people who already live in Istanbul start *speaking* Turkish. You hear the language every day; Settlingo gives you the words, the confidence and a daily habit. Ten minutes a day, right in the browser, free and without sign-up.
+**Blably** is a free app for learning languages both ways: **Turkish for Russian speakers** and **Russian for Turkish speakers**. It is built for people who live next to the language and want to start *speaking* it: words, confidence and a daily habit. Ten minutes a day, right in the browser, without sign-up.
 
-> The interface is in Russian for now. Ukrainian and English interfaces and an English course are on the roadmap.
+> Live now: Turkish for Russian speakers, interface in Russian. Russian for Turkish speakers, an English course and interfaces in Ukrainian, English and Turkish are on the roadmap.
 
-<p align="center"><img src="docs/assets/screens.png" alt="Settlingo screens" width="830"></p>
+<p align="center"><img src="docs/assets/screens.png" alt="Blably screens" width="830"></p>
 
 ## What’s inside
 
@@ -49,17 +49,19 @@ flowchart LR
 | Course | For speakers of | Status | Contents |
 |---|---|---|---|
 | **Turkish** | Russian | <img src="https://img.shields.io/badge/live-16A061?style=flat-square" alt="live"> | 34 lessons · 403 words · audio |
-| **English** | Russian, Ukrainian | <img src="https://img.shields.io/badge/planned-B7C1D6?style=flat-square" alt="planned"> | next big step, see roadmap |
+| **Russian** | Turkish | <img src="https://img.shields.io/badge/planned-B7C1D6?style=flat-square" alt="planned"> | Cyrillic, everyday phrases, cases explained through Turkish |
+| **English** | Russian, Ukrainian | <img src="https://img.shields.io/badge/planned-B7C1D6?style=flat-square" alt="planned"> | A1–A2, work, moving and travel |
 
 ## Roadmap
 
 | Stage | What |
 |---|---|
-| 1. **Foundation** | offline mode, interface in 3 languages, tests, course packs |
+| 1. **Foundation** | offline mode, interface in 4 languages, tests, two-way course packs |
 | 2. **English course** | English for Russian and Ukrainian speakers |
-| 3. **Better learning** | placement test, pronunciation check, dialogues |
-| 4. **Sync and sharing** | progress on all devices, share with friends |
-| 5. **Mobile apps** | App Store and Google Play |
+| 3. **Russian for Turks** | Cyrillic, phrases and grammar with a Turkish interface |
+| 4. **Better learning** | placement test, pronunciation check, dialogues |
+| 5. **Sync and sharing** | progress on all devices, share with friends |
+| 6. **Mobile apps** | App Store and Google Play |
 
 [Full plan with details →](ROADMAP.md)
 
@@ -97,4 +99,4 @@ Opening `index.html` directly from disk will not play audio: browsers block it o
 
 Code: [AGPL-3.0-or-later](LICENSE). Lessons, vocabulary and audio: [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/), non-commercial use with attribution. Turkish voice: [Piper](https://github.com/rhasspy/piper) `tr_TR-dfki-medium`, trained on [dfki-ot-data](https://github.com/marytts/dfki-ot-data/). Font: Nunito, SIL OFL 1.1. Details: [LICENSE-CONTENT.md](LICENSE-CONTENT.md).
 
-<p align="center"><br><img src="brand/settlingo-icon.svg" width="40" alt=""><br><sub>Made in Istanbul</sub></p>
+<p align="center"><br><img src="brand/blably-icon.svg" width="40" alt=""><br><sub>Made in Istanbul</sub></p>
