@@ -330,5 +330,10 @@ export const WG=[
 ]}
 ];
 
-/* Which word groups feed listening practice and the word of the day, and which grammar to drill before any grammar lesson */
-export const META={listen:['pron','ask','here','dir','when','yes','phr'],wordOfDay:['phr','links'],firstGrammar:['plural','poss1','loc','pres','past']};
+/* About the course: which language it teaches (target) and explains in (base);
+   which word groups feed listening practice and the word of the day; which grammar to drill before any grammar lesson;
+   phrases in the target language the screens use (greeting by part of the day, praise, goodbye) and its special letters */
+export const META={target:'tr',base:'ru',
+ listen:['pron','ask','here','dir','when','yes','phr'],wordOfDay:['phr','links'],firstGrammar:['plural','poss1','loc','pres','past'],
+ greet:{night:'İyi geceler',morning:'Günaydın',day:'İyi günler',evening:'İyi akşamlar'},
+ praise:['Doğru!','Aferin!','Harika!'],perfect:'Mükemmel!',bye:'Yarın görüşürüz!',letters:'çğıöşü'};

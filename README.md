@@ -92,6 +92,7 @@ Opening `index.html` directly from disk shows an empty page: browsers do not loa
 | `app.css` | Design tokens, components, animations |
 | `core/` | Rules without the page: progress, spaced repetition, Turkish morphology, sessions, answer checking |
 | `ui/` | Screens, lesson player, sound, storage |
+| `i18n/` | Interface texts in Russian, Ukrainian and English |
 | `data.js` | Course content and vocabulary |
 | `audio/ · audio-index.js` | Audio packs and their index |
 | `tests/` | Tests: node --test |

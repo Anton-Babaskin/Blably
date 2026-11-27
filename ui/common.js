@@ -2,8 +2,13 @@
 import { $$, esc } from './dom.js';
 import { ICON } from './icons.js';
 import { Sound } from './audio.js';
+import { t } from './i18n.js';
+import { course } from './state.js';
 
-export const playBtn = (t, cls) => `<button class="say ${cls || ''}" data-say="${esc(t)}" aria-label="Послушать">${ICON.play}</button>`;
+/* Parameters for phrases that name the language being learned: «Как это {in}?» → «Как это по-турецки?» */
+export const lang = () => ({ in: t(`langs.${course.META.target}.in`) });
+
+export const playBtn = (text, cls) => `<button class="say ${cls || ''}" data-say="${esc(text)}" aria-label="${esc(t('common.listen'))}">${ICON.play}</button>`;
 let speakingBtn = null;
 Sound.onState(on => { if (speakingBtn) speakingBtn.classList.toggle('playing', on); if (!on) speakingBtn = null; });
 export function speak(text, rate, btn) {
@@ -16,7 +21,8 @@ document.addEventListener('click', e => {
   const b = e.target.closest('[data-say]');
   if (b) { e.stopPropagation(); speak(b.dataset.say, b.dataset.rate ? +b.dataset.rate : 1, b.querySelector('.say') || b); }
 }, true);
-export const TR_KEYS = `<div class="keys">${[...'çğıöşü'].map(c => `<button class="key" data-c="${c}" tabindex="-1">${c}</button>`).join('')}</div>`;
+/* Buttons for the letters of the language being learned that a keyboard may lack */
+export const letterKeys = () => `<div class="keys">${[...course.META.letters].map(c => `<button class="key" data-c="${c}" tabindex="-1">${c}</button>`).join('')}</div>`;
 export function wireKeys(input, onChange) {
   $$('.key').forEach(k => {
     k.onmousedown = e => e.preventDefault();
