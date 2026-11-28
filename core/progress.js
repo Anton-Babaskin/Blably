@@ -19,10 +19,13 @@ export function restore(currentText, olderText, day) {
   } catch (e) {}
   return S;
 }
-/* Start over, keeping the same object so everyone holding it sees the change */
+/* Start over, keeping the same object so everyone holding it sees the change.
+   Settings that are not progress (the interface language) stay. */
+const KEEP = ['lang'];
 export function resetState(S) {
+  const kept = Object.fromEntries(KEEP.filter(k => k in S).map(k => [k, S[k]]));
   Object.keys(S).forEach(k => { delete S[k]; });
-  return Object.assign(S, fresh());
+  return Object.assign(S, fresh(), kept);
 }
 
 /* Days are counted in the learner's own time zone */

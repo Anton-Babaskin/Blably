@@ -3,11 +3,11 @@
 import fs from 'node:fs';
 import { speakKey, hasCyr, cmp } from '../core/text.js';
 import { NOUNS, VERBS, nounForm, pres, past, fut, aor, quest, abil, must } from '../core/morph.js';
-import { TALK, GRAM, WG } from '../data.js';
+import { TALK, GRAM, WG, META } from '../data.js';
 
 const out = {}, seen = new Set();
 const add = (pack, t, q) => { const k = speakKey(t); if (!k || hasCyr(k) || seen.has(k)) return; seen.add(k); (out[pack] = out[pack] || []).push([k, q ? k + '?' : k]); };
-['İyi geceler', 'Günaydın', 'İyi günler', 'İyi akşamlar'].forEach(t => add('course', t));
+Object.values(META.greet).forEach(t => add('course', t));   // greeting on the Today screen
 [...TALK, ...GRAM].forEach(u => u.ls.forEach(l => l.steps.forEach(s => {
   if (s.k === 'learn') s.ex.forEach(e => add('course', e[0]));
   if (s.k === 'mc') { if (s.say) add('course', s.say); if (!hasCyr(s.o[0]) && !/</.test(s.o[0])) add('course', s.o[0]); }
