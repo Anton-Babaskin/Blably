@@ -5,6 +5,7 @@ import { pick, shuffle, random } from './text.js';
 import { Step, uniqItems } from './steps.js';
 import { daily } from './progress.js';
 
+/* S: the progress of this course (see progress.js) */
 export function createSessions({ S, course, srs }) {
   const C = course;
   return {

@@ -6,7 +6,7 @@
     "loadError": "Couldn’t load the course. Check your connection and reload the page."
   },
   "langs": {
-    "tr": { "in": "in Turkish" }
+    "tr": { "name": "Turkish", "in": "in Turkish" }
   },
   "tabs": {
     "today": "Today",
@@ -145,8 +145,15 @@
     "xp": "XP",
     "accuracy": "accuracy"
   },
+  "pick": {
+    "title": "Choose a course",
+    "speak": "I speak",
+    "learn": "I want to learn"
+  },
   "settings": {
     "title": "Settings",
+    "course": "Course",
+    "explained": "Explained in: {base}",
     "language": "Interface language",
     "languageNote": "Changes buttons and hints. Lessons stay in the course language.",
     "auto": "Same as browser"

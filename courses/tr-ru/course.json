@@ -4,6 +4,7 @@
   "base": "ru",
   "voice": "tr",
   "audioStart": ["course","words1"],
+  "defaultTopics": ["plural","loc","dat","pres"],
   "listen": ["pron","ask","here","dir","when","yes","phr"],
   "wordOfDay": ["phr","links"],
   "firstGrammar": ["plural","poss1","loc","pres","past"],

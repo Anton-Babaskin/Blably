@@ -9,7 +9,7 @@
 
 export const PACK_FILES = ['course', 'lessons', 'words', 'grammar'];
 const STEP_FIELDS = { learn: ['t', 'ex'], mc: ['q', 'o'], build: ['ru', 'a'], match: ['p'], gen: ['topics', 'n'] };
-const COURSE_FIELDS = ['id', 'target', 'base', 'voice', 'audioStart', 'listen', 'wordOfDay', 'firstGrammar', 'greet', 'praise', 'perfect', 'bye', 'letters'];
+const COURSE_FIELDS = ['id', 'target', 'base', 'voice', 'audioStart', 'defaultTopics', 'listen', 'wordOfDay', 'firstGrammar', 'greet', 'praise', 'perfect', 'bye', 'letters'];
 const GREET = ['night', 'morning', 'day', 'evening'];
 
 /* Every problem in the package as a readable line; an empty list means the package is fine */
@@ -67,7 +67,7 @@ export function checkPack(pack) {
   COURSE_FIELDS.forEach(f => need(c[f] != null, `course.json: missing «${f}»`));
   need(c.id === `${c.target}-${c.base}`, `course.json: id «${c.id}» must be «target-base»`);
   ['listen', 'wordOfDay'].forEach(f => (c[f] || []).forEach(id => need(cats.has(id), `course.json: ${f} names unknown word group «${id}»`)));
-  ['firstGrammar'].forEach(f => (c[f] || []).forEach(tp => need(tp in topics, `course.json: ${f} names unknown topic «${tp}»`)));
+  ['firstGrammar', 'defaultTopics'].forEach(f => (c[f] || []).forEach(tp => need(tp in topics, `course.json: ${f} names unknown topic «${tp}»`)));
   need(GREET.every(k => str((c.greet || {})[k])), `course.json: greet needs ${GREET.join(', ')}`);
   need(isArr(c.praise) && c.praise.length > 0, 'course.json: praise must be a list');
   return bad;

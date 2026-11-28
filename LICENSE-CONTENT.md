@@ -4,7 +4,7 @@ Blably is made of three kinds of material, each under its own license.
 
 | What | Files | License |
 |---|---|---|
-| **Code** | `*.js`, `*.css`, `*.html`, `tools/`, `.github/` | [GNU AGPL-3.0-or-later](LICENSE) |
+| **Code**, including interface texts | `*.js`, `*.css`, `*.html`, `i18n/`, `tools/`, `.github/` | [GNU AGPL-3.0-or-later](LICENSE) |
 | **Course content**: lessons, phrases, translations, vocabulary, explanations | `courses/`, `docs/` | [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) |
 | **Audio** | `audio/` | [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/), inherited from the voice |
 | **Logo and brand** | `brand/` | All rights reserved. Use it to link to or talk about Blably, not to brand your own fork. |

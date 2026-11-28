@@ -5,8 +5,9 @@ import { pick, shuffle, norm, cmp, fold, hasCyr } from './text.js';
 import { genQ, mkOptions } from './morph.js';
 import { addXP, daily, streak, dayNumber } from './progress.js';
 
-/* grammar: {nouns, verbs} from the course package, for made-up grammar questions */
-export function createRunner({ S, srs, now, grammar }) {
+/* S: this course's progress, G: what all courses share (experience, days);
+   grammar: {nouns, verbs} from the course package, for made-up grammar questions */
+export function createRunner({ S, G, srs, now, grammar }) {
   let P = null;
   const correctOf = (opts, right) => opts.map((o, i) => o === right ? i : -1).filter(i => i >= 0);
   const lineText = (s, line) => line.map(id => s._t.find(t => t.i === id).w).join(' ');
@@ -96,12 +97,12 @@ export function createRunner({ S, srs, now, grammar }) {
     /* Close the session: experience, lesson result, new phrases into repetition, today's plan */
     finish() {
       const t = now(), acc = P.tot ? Math.round(P.ok / P.tot * 100) : 100, xp = P.xp + (P.lessonId ? 10 : 0);
-      addXP(S, xp, t);
+      addXP(G, xp, t);
       if (P.lessonId) S.done[P.lessonId] = Math.max(S.done[P.lessonId] || 0, acc);
       (P.enroll || []).forEach(k => srs.enroll(k));
       const d = daily(S, dayNumber(t));
       if (P.kind === 'rev') d.rev = 1; if (P.kind === 'lesson') d.lesson = 1; if (P.kind === 'listen') d.listen = 1;
-      return { acc, xp, added: (P.enroll || []).length, streak: streak(S, t), lesson: !!P.lessonId };
+      return { acc, xp, added: (P.enroll || []).length, streak: streak(G, t), lesson: !!P.lessonId };
     }
   };
 }
