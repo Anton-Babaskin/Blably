@@ -2,7 +2,8 @@
   "app": {
     "title": "Blably: Turkish and Russian",
     "description": "Everyday phrases, clear grammar, listening and spaced repetition.",
-    "sections": "Sections"
+    "sections": "Sections",
+    "loadError": "Couldn’t load the course. Check your connection and reload the page."
   },
   "langs": {
     "tr": { "in": "in Turkish" }

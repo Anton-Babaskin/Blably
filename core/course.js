@@ -1,10 +1,11 @@
 /* Core: an index over one course's content. Lists of phrases, the dictionary, lessons in order,
    what to listen to, the word of the day. Built once when the course loads.
-   content: {TALK, GRAM, WG, META} as exported by data.js (later: a course package). */
+   pack: {course, lessons, words, grammar} — the four files of courses/<id>/ (see pack.js). */
 import { speakKey, shuffle } from './text.js';
 import { Step, uniqItems } from './steps.js';
 
-export function indexCourse({ TALK, GRAM, WG, META }) {
+export function indexCourse(pack) {
+  const { talk: TALK, gram: GRAM } = pack.lessons, WG = pack.words, META = pack.course;
   const okPair = e => !/[=]/.test(e[1]) && speakKey(e[0]).length > 1;
   const toItem = e => ({ tr: speakKey(e[0]), ru: e[1] });
   const lessonItems = l => l.steps.filter(s => s.k === 'learn').flatMap(s => s.ex).filter(okPair).map(toItem);
@@ -32,7 +33,7 @@ export function indexCourse({ TALK, GRAM, WG, META }) {
   const wordPool = BASE_ITEMS.concat(...META.wordOfDay.map(id => catItems(catById(id)))).filter(x => x.tr.length > 3);
 
   return {
-    META, units, flat, ALL_LESSONS, lessonItems,
+    META, grammar: pack.grammar, topics: pack.grammar.topics, units, flat, ALL_LESSONS, lessonItems,
     lesson: id => ALL_LESSONS.find(x => x.id === id),
     groups: WG, ALLCATS, catById, catItems, TALK_ITEMS, BASE_ITEMS, DICT, itemOf, LISTEN_POOL,
     totalWords: ALLCATS.reduce((a, c) => a + c.it.length, 0),

@@ -93,12 +93,12 @@ Opening `index.html` directly from disk shows an empty page: browsers do not loa
 | `core/` | Rules without the page: progress, spaced repetition, Turkish morphology, sessions, answer checking |
 | `ui/` | Screens, lesson player, sound, storage |
 | `i18n/` | Interface texts in Russian, Ukrainian and English |
-| `data.js` | Course content and vocabulary |
-| `audio/ · audio-index.js` | Audio packs and their index |
+| `courses/` | Course packages: tr-ru (lessons, vocabulary, grammar words) |
+| `audio/` | Audio packs by language, with an index |
 | `tests/` | Tests: node --test |
 | `brand/ · fonts/` | Logo, icons, Nunito |
 | `docs/design-review/` | Design audit, before and after |
-| `tools/` | Scripts that build the audio and the logo |
+| `tools/` | Scripts that list phrases, build the audio, the logo and the README |
 
 </details>
 

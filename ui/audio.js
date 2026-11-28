@@ -1,5 +1,5 @@
-/* Screens: sound. Recorded Turkish clips, packed into a few mp3 files.
-   AUDIO_INDEX (audio-index.js) maps pack -> [[key, byteLength], ...] in file order.
+/* Screens: sound. Recorded clips of one language, packed into a few mp3 files in audio/<lang>/.
+   audio/<lang>/index.json maps pack -> [[key, byteLength], ...] in file order.
    A clip is a byte range of its pack; we cut it out and play it as a blob.
    Falls back to seeking inside the pack, then to the device's own voice. */
 import { uniq, speakKey } from '../core/text.js';
@@ -11,13 +11,25 @@ export const Sound = (() => {
   const el = new Audio();
   el.preload = 'auto';
   let unlocked = false, stopAt = 0, token = 0, lastUrl = null;
+  let lang = '', dir = '', ready = Promise.resolve();
 
-  for (const [pack, list] of Object.entries(window.AUDIO_INDEX || {})) {
-    let off = 0;
-    for (const [key, len] of list) {
-      if (!where.has(key)) where.set(key, { pack, off, len });
-      off += len;
-    }
+  /* Switch to a language's voice: fetch its index, then the packs needed right away.
+     Until the index arrives, say() and preload() wait for it. */
+  function load(voice, startPacks) {
+    if (voice === lang) return ready;
+    lang = voice; dir = `audio/${voice}/`;
+    where.clear(); packs.clear();
+    ready = fetch(dir + 'index.json').then(r => r.ok ? r.json() : {}).catch(() => ({})).then(index => {
+      for (const [pack, list] of Object.entries(index)) {
+        let off = 0;
+        for (const [key, len] of list) {
+          if (!where.has(key)) where.set(key, { pack, off, len });
+          off += len;
+        }
+      }
+      (startPacks || []).forEach(p => { if (index[p]) loadPack(p); });
+    });
+    return ready;
   }
 
   /* A tenth of a second of silence, built here so the unlock tap has something real to play */
@@ -40,13 +52,14 @@ export const Sound = (() => {
 
   function loadPack(pack) {
     if (!packs.has(pack)) {
-      packs.set(pack, fetch('audio/' + pack + '.mp3')
+      packs.set(pack, fetch(dir + pack + '.mp3')
         .then(r => r.ok ? r.arrayBuffer() : null)
         .catch(() => null));
     }
     return packs.get(pack);
   }
-  function preload(keys) {
+  async function preload(keys) {
+    await ready;
     uniq(keys.map(k => where.get(speakKey(k))).filter(Boolean).map(w => w.pack)).forEach(loadPack);
   }
 
@@ -62,8 +75,8 @@ export const Sound = (() => {
     try {
       speechSynthesis.cancel();
       const u = new SpeechSynthesisUtterance(text);
-      u.lang = 'tr-TR'; u.rate = rate < 1 ? 0.6 : 0.9;
-      const v = speechSynthesis.getVoices().find(x => /^tr/i.test(x.lang));
+      u.lang = lang; u.rate = rate < 1 ? 0.6 : 0.9;
+      const v = speechSynthesis.getVoices().find(x => x.lang.toLowerCase().startsWith(lang));
       if (v) u.voice = v;
       speechSynthesis.speak(u);
     } catch (e) {}
@@ -74,6 +87,8 @@ export const Sound = (() => {
     if (!key) return;
     const my = ++token;
     rate = rate || 1;
+    await ready;
+    if (my !== token) return;
     const w = where.get(key);
     if (!w) { deviceVoice(key, rate); return; }
     stopAt = 0;
@@ -85,7 +100,7 @@ export const Sound = (() => {
         lastUrl = URL.createObjectURL(new Blob([buf.slice(w.off, w.off + w.len)], { type: 'audio/mpeg' }));
         el.src = lastUrl;
       } else {
-        el.src = 'audio/' + w.pack + '.mp3';
+        el.src = dir + w.pack + '.mp3';
         const start = w.off / BYTES_PER_SEC;
         await new Promise(res => { el.addEventListener('loadedmetadata', res, { once: true }); setTimeout(res, 4000); });
         if (my !== token) return;
@@ -97,7 +112,5 @@ export const Sound = (() => {
     } catch (e) { /* refused by the browser: the text stays on screen */ }
   }
 
-  ['course', 'words1'].forEach(p => { if (window.AUDIO_INDEX && window.AUDIO_INDEX[p]) loadPack(p); });
-
-  return { say, preload, onState: fn => listeners.push(fn), has: t => where.has(speakKey(t)) };
+  return { load, say, preload, onState: fn => listeners.push(fn) };
 })();

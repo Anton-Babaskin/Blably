@@ -1,0 +1,15 @@
+{
+  "id": "tr-ru",
+  "target": "tr",
+  "base": "ru",
+  "voice": "tr",
+  "audioStart": ["course","words1"],
+  "listen": ["pron","ask","here","dir","when","yes","phr"],
+  "wordOfDay": ["phr","links"],
+  "firstGrammar": ["plural","poss1","loc","pres","past"],
+  "greet": {"night":"İyi geceler","morning":"Günaydın","day":"İyi günler","evening":"İyi akşamlar"},
+  "praise": ["Doğru!","Aferin!","Harika!"],
+  "perfect": "Mükemmel!",
+  "bye": "Yarın görüşürüz!",
+  "letters": "çğıöşü"
+}
