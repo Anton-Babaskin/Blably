@@ -174,7 +174,7 @@ python3 tools/build-audio.py                # → audio/tr/*.mp3 и audio/tr/ind
 
 | Что | Лицензия |
 |---|---|
-| Код | AGPL-3.0-or-later (`LICENSE`) |
+| Код и тексты интерфейса (`i18n/`) | AGPL-3.0-or-later (`LICENSE`) |
 | Уроки, словарь, тексты, звук | CC BY-NC-SA 4.0 (`LICENSE-CONTENT.md`) |
 | Логотип и бренд | все права у владельца |
 | Шрифт Nunito | SIL OFL 1.1 |
