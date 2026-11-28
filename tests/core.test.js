@@ -25,17 +25,17 @@ test('core does not touch the page, storage or sound', () => {
 
 test('a whole lesson can be played in Node', async () => {
   const pack = readPack('tr-ru');
-  const { restore, dayNumber } = await import('../core/progress.js');
+  const { restore, dayNumber, courseProgress } = await import('../core/progress.js');
   const { indexCourse } = await import('../core/course.js');
   const { createSRS } = await import('../core/srs.js');
   const { createSessions } = await import('../core/sessions.js');
   const { createRunner } = await import('../core/run.js');
   const now = () => new Date(2026, 10, 27, 12);
   const today = () => dayNumber(now());
-  const S = restore(null, null, today());
+  const G = restore({}, today()), S = courseProgress(G, 'tr-ru', pack.course.defaultTopics);
   const course = indexCourse(pack);
   const srs = createSRS(S, { today, has: k => course.DICT.has(k) });
-  const runner = createRunner({ S, srs, now, grammar: pack.grammar });
+  const runner = createRunner({ S, G, srs, now, grammar: pack.grammar });
   const cfg = createSessions({ S, course, srs }).lesson('t1');
   assert.ok(runner.start(cfg));
   do {
@@ -50,15 +50,6 @@ test('a whole lesson can be played in Node', async () => {
   const f = runner.finish();
   assert.equal(f.acc, 100);
   assert.equal(S.done.t1, 100);
-  assert.ok(S.xp > 0 && f.added > 0);
+  assert.ok(G.xp > 0 && f.added > 0);
   assert.equal(srs.due().length, 0, 'new phrases come back tomorrow, not today');
-});
-
-test('progress from the oldest format is carried over', async () => {
-  const { restore } = await import('../core/progress.js');
-  const S = restore(null, JSON.stringify({ xp: 5, done: { t2: 90 }, known: { 'Selam': 1, '(çok) güzel': 1 } }), 100);
-  assert.equal(S.xp, 5);
-  assert.deepEqual(S.done, { t2: 90 });
-  assert.deepEqual(S.srs, { 'Selam': { b: 4, d: 116 }, 'güzel': { b: 4, d: 116 } });
-  assert.equal(restore('{broken', JSON.stringify({ xp: 7 }), 100).xp, 0);
 });

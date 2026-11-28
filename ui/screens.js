@@ -4,20 +4,21 @@ import { $, $$, esc } from './dom.js';
 import { ICON, MARK } from './icons.js';
 import { playBtn, ring, lang } from './common.js';
 import { Player } from './player.js';
-import { S, save, now, today, course, srs, sessions } from './state.js';
+import { G, S, save, now, today, course, srs, sessions, catalog, loadCourse } from './state.js';
 import { t, currentLang, useLang, chosenLang } from './i18n.js';
 import { speakKey } from '../core/text.js';
 import { UI_LANGS, LANG_NAMES } from '../core/i18n.js';
 import { streak, dateKey, daySlot, resetState } from '../core/progress.js';
+import { bases, targetsFor, firstBase } from '../core/catalog.js';
 
 const LISTEN_COUNT = 10, GRAMMAR_COUNT = 10;
 
 export const App = (() => {
   const app = $('#app');
-  const V = { tab: 'today', cat: null, back: 'today' };
+  const V = { tab: 'today', cat: null, back: 'today', base: null, first: false };
   const ZIG = [0, 56, 84, 56, 0, -56, -84, -56];
 
-  const topbar = () => `<div class="topbar"><div class="brand">${MARK}<span>Blably</span></div><div class="top-r"><div class="chip-streak" title="${esc(t('top.streak'))}">${ICON.flame}<b>${streak(S, now())}</b></div><button class="gear" id="gear" aria-label="${esc(t('top.settings'))}">${ICON.gear}</button></div></div>`;
+  const topbar = () => `<div class="topbar"><div class="brand">${MARK}<span>Blably</span></div><div class="top-r"><div class="chip-streak" title="${esc(t('top.streak'))}">${ICON.flame}<b>${streak(G, now())}</b></div><button class="gear" id="gear" aria-label="${esc(t('top.settings'))}">${ICON.gear}</button></div></div>`;
   const backbar = label => `<div class="topbar"><button class="back" id="back">${ICON.back}${esc(label)}</button></div>`;
   const tileIcon = (ic, cls) => `<span class="ic-tile ${cls || ''}">${ic}</span>`;
 
@@ -26,7 +27,7 @@ export const App = (() => {
       const slot = daySlot(now().getHours());
       const g = [course.META.greet[slot], t(`today.greet.${slot}`)];
       const pl = sessions.todayPlan(today()), due = pl.due, nl = pl.next;
-      const xp = S.days[dateKey(now())] || 0, st = streak(S, now()), w = course.wordOfDay(today());
+      const xp = G.days[dateKey(now())] || 0, st = streak(G, now()), w = course.wordOfDay(today());
       const TEXT = {
         rev: { ic: ICON.repeat, t: t('today.review'), s: due ? t('today.due', { n: due }) : (pl.count ? t('today.allReviewed') : t('today.reviewLater')) },
         lesson: { ic: ICON.lesson, t: t('today.newLesson'), s: nl ? nl.t : t('today.allDone') },
@@ -37,14 +38,14 @@ export const App = (() => {
       <header class="head"><div class="eyebrow">${now().toLocaleDateString(currentLang(), { weekday: 'long', day: 'numeric', month: 'long' })}</div>
         <h1 class="greet"><span>${g[0]}</span>${playBtn(g[0], 'soft lg')}</h1><p class="lead">${g[1]}. ${t('today.lead')}</p></header>
       <section class="card goal rise">
-        <div class="goal-top"><div class="goal-ring">${ring(xp, S.goal, 76)}<span><b>${xp}</b><i>${t('today.of', { n: S.goal })}</i></span></div>
-          <div><div class="eyebrow blue">${t('today.goal')}</div><div class="goal-t">${doneN === 3 ? t('today.planDone') : xp >= S.goal ? t('today.goalReached') : t('today.xpLeft', { n: Math.max(0, S.goal - xp) })}</div><div class="goal-s">${t('today.steps', { done: doneN, total: 3 })}</div></div></div>
+        <div class="goal-top"><div class="goal-ring">${ring(xp, G.goal, 76)}<span><b>${xp}</b><i>${t('today.of', { n: G.goal })}</i></span></div>
+          <div><div class="eyebrow blue">${t('today.goal')}</div><div class="goal-t">${doneN === 3 ? t('today.planDone') : xp >= G.goal ? t('today.goalReached') : t('today.xpLeft', { n: Math.max(0, G.goal - xp) })}</div><div class="goal-s">${t('today.steps', { done: doneN, total: 3 })}</div></div></div>
         <ol class="plan">${plan.map(p => `<li><button class="plan-row ${p.done ? 'done' : ''}" data-plan="${p.id}" ${p.off ? 'disabled' : ''}>${tileIcon(p.done ? ICON.ok : p.ic, p.done ? 'done' : '')}<span class="plan-t"><b>${p.t}</b><i>${esc(p.s)}</i></span><span class="chev">${ICON.chev}</span></button></li>`).join('')}</ol>
         ${first ? `<button class="btn" data-plan="${first.id}">${doneN ? t('common.continue') : t('today.begin')}</button>` : `<div class="goal-done">${course.META.bye} ${t('today.bye')}</div>`}</section>
       <section class="stats rise">
         <div class="card stat">${tileIcon(ICON.flame)}<b>${st}</b><i>${t('common.streakDays', { n: st })}</i></div>
         <div class="card stat">${tileIcon(ICON.layers)}<b>${srs.count()}</b><i>${t('today.inMemory', { n: srs.count() })}</i></div>
-        <div class="card stat">${tileIcon(ICON.bolt)}<b>${S.xp}</b><i>${t('today.xpTotal')}</i></div></section>
+        <div class="card stat">${tileIcon(ICON.bolt)}<b>${G.xp}</b><i>${t('today.xpTotal')}</i></div></section>
       <h2 class="sec">${t('today.wordOfDay')}</h2>
       <button class="card wod rise" data-say="${esc(w.tr)}"><span><b>${esc(w.tr)}</b><i>${esc(w.ru)}</i></span><span class="say lg">${ICON.play}</span></button>
       <div class="foot" id="resetbox"><button class="link muted" id="reset">${t('today.reset')}</button></div>`;
@@ -96,20 +97,34 @@ export const App = (() => {
         const key = speakKey(x[0]), st = srs.get(key), known = st && st.b >= 3;
         return `<div class="row"><button class="row-t w" data-say="${esc(x[0])}"><span class="say sm soft">${ICON.play}</span><span><b>${esc(x[0])}</b><i>${esc(x[1])}</i>${x[2] ? `<em>${esc(x[2])}</em>` : ''}</span></button><button class="lvl ${known ? 'on' : st ? 'mid' : ''}" data-know="${esc(key)}" aria-label="${esc(t('words.markKnown'))}">${known ? t('words.know') : st ? t('words.learning') : t('words.knowQ')}</button></div>`; }).join('')}</div>`;
     },
-    /* Settings: for now only the interface language. «Как в браузере» follows the browser. */
+    /* Settings: the course and the interface language. «Как в браузере» follows the browser. */
     settings() {
-      const choice = (id, name, sub) => { const on = (S.lang || 'auto') === id;
-        return `<button class="row choice" role="radio" aria-checked="${on}" data-lang="${id}"><span class="row-t"><b>${esc(name)}</b>${sub ? `<i>${esc(sub)}</i>` : ''}</span><span class="pick">${ICON.ok}</span></button>`; };
+      const choice = (id, name, sub) => radio('lang', id, name, sub, (G.lang || 'auto') === id);
+      const M = course.META;
       return `${backbar(t('top.back'))}
       <header class="head tight"><h1>${t('settings.title')}</h1></header>
+      <div class="label">${t('settings.course')}</div>
+      <div class="card rows rise"><button class="row" id="s-course"><span class="row-t"><b>${esc(t(`langs.${M.target}.name`))}</b><i>${esc(t('settings.explained', { base: LANG_NAMES[M.base] || M.base }))}</i></span><span class="chev">${ICON.chev}</span></button></div>
       <div class="label">${t('settings.language')}</div>
       <div class="card rows rise" role="radiogroup" aria-label="${esc(t('settings.language'))}">
         ${choice('auto', t('settings.auto'), LANG_NAMES[chosenLang(null)])}
         ${UI_LANGS.map(l => choice(l, LANG_NAMES[l])).join('')}
       </div>
       <p class="sec-d note">${t('settings.languageNote')}</p>`;
+    },
+    /* «Я говорю на… → хочу учить…». At the first start (several courses, none chosen yet) there is no way back. */
+    pick() {
+      const base = V.base || firstBase(catalog, G.course, currentLang());
+      return `${V.first ? `<div class="topbar"><div class="brand">${MARK}<span>Blably</span></div></div>` : backbar(t('settings.title'))}
+      <header class="head tight"><h1>${t('pick.title')}</h1></header>
+      <div class="label">${t('pick.speak')}</div>
+      <div class="card rows rise" role="radiogroup" aria-label="${esc(t('pick.speak'))}">${bases(catalog).map(b => radio('base', b, LANG_NAMES[b] || b, '', b === base)).join('')}</div>
+      <div class="label">${t('pick.learn')}</div>
+      <div class="card rows rise" role="radiogroup" aria-label="${esc(t('pick.learn'))}">${targetsFor(catalog, base).map(c => radio('course', c.id, t(`langs.${c.target}.name`), '', c.id === G.course)).join('')}</div>`;
     }
   };
+  /* A row with a tick, one of a group */
+  const radio = (attr, id, name, sub, on) => `<button class="row choice" role="radio" aria-checked="${on}" data-${attr}="${esc(id)}"><span class="row-t"><b>${esc(name)}</b>${sub ? `<i>${esc(sub)}</i>` : ''}</span><span class="pick">${ICON.ok}</span></button>`;
 
   /* Words on the bottom bar follow the interface language */
   function label() {
@@ -139,23 +154,32 @@ export const App = (() => {
     on('#p-mist', () => Player.start(sessions.mistakes()));
     on('[data-cat]', el => { V.cat = el.dataset.cat; render(); window.scrollTo(0, 0); });
     on('#gear', () => { V.back = V.tab; go('settings'); });
-    on('#back', () => { if (V.tab === 'settings') go(V.back); else { V.cat = null; render(); window.scrollTo(0, 0); } });
+    on('#back', () => { if (V.tab === 'settings') go(V.back); else if (V.tab === 'pick') go('settings'); else { V.cat = null; render(); window.scrollTo(0, 0); } });
+    on('#s-course', () => { V.base = null; go('pick'); });
+    on('[data-base]', el => { V.base = el.dataset.base; render(); });
+    on('[data-course]', async el => {
+      const id = el.dataset.course;
+      try { if (id !== G.course || !course) await loadCourse(id); } catch (e) { console.error(e); return; }
+      save(); V.first = false; document.body.classList.remove('choosing'); go('today');
+    });
     on('#c-learn', () => { const c = course.catById(V.cat); Player.start(sessions.words(course.catItems(c), c.n)); });
     on('#c-listen', () => { const c = course.catById(V.cat); Player.start(sessions.listening(course.catItems(c), c.n)); });
     on('[data-know]', el => { srs.toggleKnown(el.dataset.know); save(); render(); });
     on('[data-lang]', async el => {
-      if (el.dataset.lang === 'auto') delete S.lang; else S.lang = el.dataset.lang;
+      if (el.dataset.lang === 'auto') delete G.lang; else G.lang = el.dataset.lang;
       save();
-      await useLang(chosenLang(S.lang));
+      await useLang(chosenLang(G.lang));
       render();
     });
     on('#reset', () => {
       $('#resetbox').innerHTML = `<div class="card pad center"><b>${t('today.resetAsk')}</b><p class="sec-d">${t('today.resetNote')}</p><div class="pair-btn"><button class="btn soft" id="r-no">${t('today.cancel')}</button><button class="btn bad" id="r-yes">${t('today.resetYes')}</button></div></div>`;
       $('#r-no').onclick = render;
-      $('#r-yes').onclick = () => { resetState(S); save(); render(); };
+      $('#r-yes').onclick = () => { resetState(G, course.META.defaultTopics); save(); render(); };
     });
   }
 
   $$('.tabs button').forEach(b => { b.insertAdjacentHTML('afterbegin', `${ICON[b.dataset.icon]}<span class="tab-l"></span>`); b.onclick = () => go(b.dataset.tab); });
-  return { render, go };
+  /* First start with several courses and none chosen: only the course choice, no tabs */
+  const choose = () => { V.first = true; document.body.classList.add('choosing'); go('pick'); };
+  return { render, go, choose };
 })();

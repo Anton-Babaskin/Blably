@@ -386,3 +386,5 @@ details li{margin:4px 0}
 
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 @media (max-width:370px){h1{font-size:31px}.opts.two{grid-template-columns:1fr}.gq-word,.gq-sent,.big-tr{font-size:29px}.stats{gap:8px}.stat b{font-size:21px}}
+/* First start with several courses: only the course choice */
+body.choosing .tabs{display:none}

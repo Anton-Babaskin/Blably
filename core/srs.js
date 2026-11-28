@@ -4,6 +4,7 @@
 export const GAPS = [0, 1, 3, 7, 16, 35, 90];
 
 /* today() gives the current day number, has(key) says whether the course still has this phrase */
+/* S: the progress of one course; S.srs is its repetition */
 export function createSRS(S, { today, has }) {
   return {
     GAPS,
